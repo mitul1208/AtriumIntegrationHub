@@ -1,0 +1,29 @@
+<!--<nav class="searchbar navbar-inverse navbar-static-top" role="navigation" ng-controller="NavSearchCtrl as vm">-->
+<nav class="navbar-inverse navbar-static-top" role="navigation" ng-controller="NavSearchCtrl as vm">
+    <div class="col-sm-6 col-sm-offset-3">
+        <form name="form">
+            <div class="form-group input-group search-input">
+                <span class="input-group-btn" ng-show="vm.showDropdown()">
+                    <div class="dropdown">
+                        <button class="btn btn-default btn-allItems dropdown-toggle" id="dropDownMenuId" type="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false" >{{vm.getLabel(vm.itemList.dropdown.label)}}
+                        </button>
+                        <ul class="dropdown-menu" ng-if="!vm.isReadonly">
+                            <li ng-repeat="item in vm.itemList.dropdown.list" ng-click="vm.ondropdownSelect(item)">
+                                <a>{{vm.getLabel(item.label)}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </span>
+                <input ng-show="onBlurOnly" type="text" class="form-control search-query" name="queryBlur" placeholder='{{vm.getLabel("global_lbl_default_search")}}' ng-model="vm.searchText" ng-model-options="{ updateOn: 'blur', debounce: 1000 }" ng-disabled="disabledSearch">
+                <input ng-hide="onBlurOnly" type="text" class="form-control search-query" name="queryBlur" placeholder='{{vm.getLabel("global_lbl_default_search")}}' ng-model="vm.searchText" ng-disabled="disabledSearch">
+                <span class="input-group-btn">
+                    <button class="btn btn-default no-hover" type="button" ng-disabled="vm.searchText==''" ng-click="vm.searchText=''"><i class="fo icon-cancel"></i></button>
+                    <button class="btn btn-default" type="button" ng-show="vm.showDel()" ng-disabled="vm.itemList.numItemMax==0 || vm.itemList.disabledSearch" ng-click="vm.onDel();"><i class="fo icon-minus"></i></button>
+                    <button class="btn btn-default" type="button" ng-show="vm.showAdd()" ng-disabled="vm.itemList.disabledSearch" ng-click="vm.onAdd();"><i class="fo icon-plus"></i></button>
+                    <label class="lbl itemCount" ng-if="vm.deviceList.length > 0" style="margin-top: 3px">{{ vm.itemList.numItem }} / {{ vm.itemList.numItemMax }}</label>
+                </span>
+            </div>
+        </form>
+    </div>
+</nav>

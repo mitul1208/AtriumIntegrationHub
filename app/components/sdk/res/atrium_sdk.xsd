@@ -1,0 +1,607 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="https://www.cdvi.ca/" xmlns="https://www.cdvi.ca/" elementFormDefault="qualified">
+	<xs:annotation>
+		<xs:appinfo>Atrium SDK</xs:appinfo>
+	</xs:annotation>
+
+	<xs:element name="SDK">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="HEADER" minOccurs="0" maxOccurs="1">
+					<xs:complexType>
+						<xs:attributeGroup ref="header_attrgroup"/>
+					</xs:complexType>
+				</xs:element>
+
+				<xs:element name="RECORDS" minOccurs="0" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+
+							<xs:element name="REC" minOccurs="1" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+
+										<xs:element name="DATA" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:attribute name="cnt" type="xs:integer"/>
+												<xs:attributeGroup ref="result_attrgroup"/>
+												<xs:attributeGroup ref="data_type_attrgroup"/>
+												<xs:anyAttribute processContents="skip"/>
+											</xs:complexType>
+										</xs:element>
+
+									</xs:sequence>
+									<xs:attributeGroup ref="command_attrgroup"/>
+									<xs:attribute name="cmd" type="rec_cmd_type" use="required"/>
+									<xs:attribute name="type" type="obj_type_type" use="required"/>
+									<xs:attribute name="rec" type="rec_type_type" use="required"/>
+
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+
+				<xs:element name="COMMANDS" minOccurs="0" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="CMD" minOccurs="1" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+
+										<xs:element name="DATA" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:attributeGroup ref="result_attrgroup"/>
+												<xs:attributeGroup ref="data_type_attrgroup"/>
+												<xs:anyAttribute processContents="skip"/>
+											</xs:complexType>
+										</xs:element>
+
+									</xs:sequence>
+									<xs:attributeGroup ref="command_attrgroup"/>
+									<xs:attribute name="cmd" type="cmd_cmd_type" use="required"/>
+									<xs:attribute name="type" type="obj_type_type" use="required"/>
+
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+
+				<xs:element name="EVENTS" minOccurs="0" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="EVT" minOccurs="1" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+
+										<xs:element name="DATA" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:attributeGroup ref="result_attrgroup"/>
+												<xs:attributeGroup ref="data_type_attrgroup"/>
+												<xs:attributeGroup ref="evt_data_attrgroup"/>
+												<xs:anyAttribute processContents="skip"/>
+											</xs:complexType>
+										</xs:element>
+
+									</xs:sequence>
+									<xs:attributeGroup ref="command_attrgroup"/>
+									<xs:attributeGroup ref="evt_command_attrgroup"/>
+
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+
+		</xs:complexType>
+	</xs:element>
+
+	<xs:attributeGroup name="header_attrgroup">
+		<xs:annotation>
+			<xs:documentation>
+			  utc_time:	Unix time to mark the parsing start of the request packet.
+			  session:  Session identifier. This parameter is not used by the Atrium SDK but, if specified, will be sent back along
+						with the SDK answer.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="time" type="xs:string"/>
+		<xs:attribute name="session" type="xs:integer"/>
+	</xs:attributeGroup>
+
+	<xs:attributeGroup name="command_attrgroup">
+		<xs:annotation>
+			<xs:documentation>
+			trans_id: Transaction identifier to use in the request. This value will be sent back in the answer and is used to bind the
+					  request with the appropriate answer. Transaction id values should never be duplicated in the same request.
+			res:      Available in the answer, this parameter should not be sent in the request. It indicates the result of the
+					  transaction request. Note that another dedicated result code will be sent along with every "DATA" block.
+			sernum:   Serial number of the device where to send the transaction request. If not specified, the serial number of the
+					  Atrium SDK device will be used.
+			id:       Index of the element related to the transaction request. This number is '0' based. It could also be referred to
+					  as the Object Id. If specified, it is equivalent to id_min=id_max=id; therefore, id_min and id_max should not
+					  be used.
+			id_min:   Index of the first element related to the transaction request. This number is '0' based. It could also be
+					  referred to as the Object Id min.
+			id_max:   Index of the last element related to the transaction request (inclusively). This number is '0' based. It
+					  could also be referred to as the Object Id max.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="trans_id" type="xs:integer" use="required"/>
+		<xs:attribute name="res" type="res_type"/>
+		<xs:attribute name="sernum" type="hex_type"/>
+		<xs:attribute name="id" type="xs:integer"/>
+		<xs:attribute name="id_min" type="xs:integer"/>
+		<xs:attribute name="id_max" type="xs:integer"/>
+	</xs:attributeGroup>
+
+	<xs:attributeGroup name="result_attrgroup">
+		<xs:annotation>
+			<xs:documentation>
+			res: Indicates the result of this specific id transaction request.
+			id:  Index of the specific element related to the transaction request. This number is '0' based. It could also be
+			     referred to as the Object Id.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="res" type="res_type"/>
+		<xs:attribute name="id" type="xs:integer"/>
+	</xs:attributeGroup>
+
+	<xs:attributeGroup name="data_type_attrgroup">
+		<xs:annotation>
+			<xs:documentation>
+			Each of the following types could be suffixed with a number in order to create generic but unique tag identifiers. 
+            Exceptions: obj_status, valid, ro and protect never have suffixed number.
+				i.e: "word4".
+			An extra suffixed is used when the tag represents an item within a table
+				i.e.: "word4_1" represents the second item of the table while "word4_3" represents the fourth item of the table.
+
+			  utc_time:	 	Indicates that the data is a UTC time - Integer representing the unix time.
+							time_utc=""
+			  loc_time:	 	Indicates that the data is a local time - Integer representing the unix time + the time zone and
+							daylight saving offsets.
+			  obj_status:	Indicates that the data is the status of the object records. It specifies if the object is "free", "used"
+							or has been "deleted".
+							i.e.: obj_status="used"
+			  valid:		Bit to indicate if the object data is active (1) or not (0).
+			  ro:			Bit to indicate if the object data is read-only (1) or not (0).
+			  protect:		Bit to indicate if the object data is protected (1) or not (0). It indicates that the object data
+							can be modified but cannot be deleted.
+			  byte:			Indicates that the data is an integer represented on 1 byte.
+			  word:			Indicates that the data is an integer represented on 2 bytes.
+			  dword:		Indicates that the data is an integer represented on 4 bytes.
+			  utf:			Indicates that the data is represented in UTF char.
+			  label:		Indicates that the data is a label. It should be represented in UTF char.
+			  pswd:			Indicates that the data is a password. It should be represented in UTF char. The data will be saved
+			                encrypted in the device.
+			  key:			Indicates that the data is a key. It should be represented in HEX array. The data will be saved
+			                encrypted in the device.
+			  bit:			Indicates that the data is a bit that can be equal either to 1 or 0.
+			  hexv:			Indicates that the data is an hexadecimal value represented on 4 bytes.
+							i.e.: hexv="ABCD4567"
+			  hexa:			Indicates that the data is an hexadecimal array with variable length.
+							i.e.: MAC address - hexa="001ECC0203AA"
+			  bit_field:	Indicates that the data is an array of bits where the first item is located on the first byte most
+							significant bit. The data should be sent as an hexadecimal array.
+							i.e.: 82001C where 1st, 7th, 20th, 21st and 22nd items are actives.
+			  guid:			Indicates that the data is a GUID value used by the Atrium PC software to identify the object data.
+			  serial:		Indicates that the data is a serial number reprensented as an hexadecimal value of 4 bytes.
+							i.e.: serial="A2204567"
+			  ip:			Indicates that the data is an ip address represented with the ipv4 standard.
+							i.e.: ip="192.168.1.95"
+			</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="utc_time" type="xs:integer"/>
+		<xs:attribute name="loc_time" type="xs:integer"/>
+		<xs:attribute name="obj_status" type="obj_status_type"/>
+		<xs:attribute name="valid" type="xs:boolean"/>
+		<xs:attribute name="ro" type="xs:boolean"/>
+		<xs:attribute name="protect" type="xs:boolean"/>
+		<xs:attribute name="byte" type="byte_type"/>
+		<xs:attribute name="word" type="word_type"/>
+		<xs:attribute name="dword" type="xs:integer"/>
+		<xs:attribute name="utf" type="xs:string"/>
+		<xs:attribute name="label" type="xs:string"/>
+		<xs:attribute name="pswd" type="xs:string"/>
+		<xs:attribute name="key" type="xs:string"/>
+		<xs:attribute name="bit" type="xs:boolean"/>
+		<xs:attribute name="hexv" type="hex_type"/>
+		<xs:attribute name="hexa" type="hex_type"/>
+		<xs:attribute name="bit_field" type="hex_type"/>
+		<xs:attribute name="guid" type="hex_type"/>
+		<xs:attribute name="serial" type="hex_type"/>
+		<xs:attribute name="ip" type="ip_type"/>
+	</xs:attributeGroup>
+
+	<xs:attributeGroup name="evt_data_attrgroup">
+		<xs:annotation>
+			<xs:documentation>
+			  sernum:				Serial number of the device where the event was saved.
+			  time:					Local time when the event was generated.
+									time="2016-11-18 16:20:24"
+			  time_utc:				UTC time when the event was generated.
+									time_utc="2016-11-18 21:20:24"
+			  obj_evt:				Event identifier within the specified object type. Each object type has its own set of event
+									identifiers. The event unicity comes from the combination of the "obj_evt" and the "obj_type".
+			  obj_sn:				Serial number related to the event.
+									The "obj_sn" may match the "sernum" but it could differ in some cases if, for instance, the event
+									was generated by the expander but saved in the controller only.
+			  obj_type:				Object type related to the event. Each object type has its own set of event
+									identifies. The event uniqueness comes from the combination of the "obj_evt" and the "obj_type".
+			  obj_id:				Object id related to the event.
+			  obj_label:			Label of the event object id.
+			  snd_obj_sn:			Serial number of the device that triggered the event generation.
+			  snd_obj_type:			Object type that triggered the event generation.
+			  snd_obj_id:			Object identifier that triggered the event generation.
+			  snd_obj_label:		Label of the object identifier that triggered the event generation.
+
+			Optional complement of information: external references. Each event could have up to 7 extra parameters.
+			Each of the following parameters would be suffixed with a number in order to create generic but unique tag identifiers.
+				i.e: "ext_obj_sn1".
+			  ext_obj_sn:			Extra references: object serial number.
+			  ext_obj_type:			Extra references: object type.
+			  ext_obj_id:			Extra references: object identifier.
+			  ext_obj_label:		Extra references: object idenfifier label.
+			  ext_card:		        Extra references: object card number.
+			  obj_reason_granted:	Extra references: object granted reason.
+			  obj_reason_denied:	Extra references: object denied reason.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="sernum" type="hex_type"/>
+		<xs:attribute name="time" type="xs:string"/>
+		<xs:attribute name="obj_evt" type="xs:string"/>
+		<xs:attribute name="obj_sn" type="hex_type"/>
+		<xs:attribute name="obj_type" type="xs:integer"/>
+		<xs:attribute name="obj_id" type="xs:integer"/>
+		<xs:attribute name="obj_label" type="xs:string"/>
+		<xs:attribute name="snd_obj_sn" type="hex_type"/>
+		<xs:attribute name="snd_obj_type" type="xs:integer"/>
+		<xs:attribute name="snd_obj_id" type="xs:integer"/>
+		<xs:attribute name="snd_obj_label" type="xs:string"/>
+		<xs:attribute name="ext_obj_sn" type="hex_type"/>
+		<xs:attribute name="ext_obj_type" type="xs:integer"/>
+		<xs:attribute name="ext_obj_id" type="xs:integer"/>
+		<xs:attribute name="ext_obj_label" type="xs:string"/>
+		<xs:attribute name="ext_card" type="xs:string"/>
+		<xs:attribute name="obj_reason_granted" type="xs:integer"/>
+		<xs:attribute name="obj_reason_denied" type="xs:integer"/>
+	</xs:attributeGroup>
+
+	<xs:attributeGroup name="evt_command_attrgroup">
+		<xs:annotation>
+			<xs:documentation>
+              cmd:				Event command:
+									read:		Read and resolve specific events using specified event numbers and serial number.
+												No filter allowed. One device (serial number) per request.
+									query: 		Query list of events that match specified filter. The result is a list of event UTC,
+												serial number and event number.
+									query_read: Same as the "query" command but the result is the resolved events: same as read command.
+              version:		 	Version of the answer data (CRC32 on the data that is about to be sent). If the query request
+								generates a version that is equal to the specified version, then it means that the data hasn't
+								changed. Therefore, no data will be sent back to the caller to improve data exchange efficiency.
+								version="-1" should be sent on the first query request or to force data generation (last one is
+								deprecated).
+
+              num_evt:			Answer only: number of event in this query.
+              num_evt_total:	Answer only: number of event found related to this query.
+              client_tx:		Answer only: statistics on the number of requests sent from the master to the sub-controllers.
+              client_rx:		Answer only: statistics on the number of answers received by the master from the sub-controllers.
+
+			The following types are used for the command query and query_read only. They are used as a global filter to the query
+			request. They can be used to narrow event search with specific criterias.
+              type:				Specific object type string. Used to filter a single object type only.
+								*Parameter "type_min" and "type_max" should not be used when this parameter is specified.
+              type_min:			Object type minimum. Integer value of the smallest object type to accept in the filter.
+								*Parameter "type" should not be used when this parameter is specified.
+              type_max:			Object type maximum. Integer value of the biggest object type to accept in the filter.
+								*Parameter "type" should not be used when this parameter is specified.
+              sernum_min:		Smallest serial number to include in the query request.
+								i.e.: sernum_min="A2200000"
+              sernum_max:		Biggest serial number to include in the query request.
+								i.e.: sernum_min="A220FFFF"
+			The answer to the query command is a list of events that match the specified filters.
+			The events are sorted with 3 criterias:
+				* First, it is sorted in order of UTC time: most recent to older event.
+				* In case of equality, it is sorted in order of serial number: biggest serial number (FFFFFFFF) to smallest (0).
+				* Finally, if there is equality again, it will be sorted in order of event number: biggest event number (FFFFFFFF)
+				  to smallest (0).
+			If the amount of events that match the filter is larger than the maximum command capacity (40 events per query), another
+			query command could be sent with the additional "last_" parameters in order to retrieve the missing events. These
+			parameters should correspond to those of the last event in the event answer.
+              last_sernum:		Serial number of the last event received
+              last_num:			Event number of the last event received
+              last_ts_utc:		UTC time of the last event received. Integer value received from the "query" command.
+              last_ts_str:		UTC time of the last event received String value received from the "query_read" command.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="cmd" type="evt_cmd_type" use="required"/>
+		<xs:attribute name="version" type="xs:integer" default="-1"/>
+		<xs:attribute name="num_evt" type="xs:integer"/>
+		<xs:attribute name="num_evt_total" type="xs:integer"/>
+		<xs:attribute name="client_tx" type="xs:integer"/>
+		<xs:attribute name="client_rx" type="xs:integer"/>
+		<xs:attribute name="type" type="obj_type_type"/>
+		<xs:attribute name="type_min" type="xs:integer" default="0"/>
+		<xs:attribute name="type_max" type="xs:integer" default="512"/>
+		<xs:attribute name="sernum_min" type="hex_type" default="0"/>
+		<xs:attribute name="sernum_max" type="hex_type" default="FFFFFFFF"/>
+		<xs:attribute name="last_sernum" type="hex_type" default="FFFFFFFF"/>
+		<xs:attribute name="last_num" type="xs:integer" default="-1"/>
+		<xs:attribute name="last_ts_utc" type="xs:integer" default="-1"/>
+		<xs:attribute name="last_ts_str" type="xs:string"/>
+	</xs:attributeGroup>
+
+	<xs:simpleType name="res_type">
+		<xs:annotation>
+			<xs:documentation>
+			Result to the transaction request or item content.
+			  ok:				    No error. Request completed successfully.
+			  err_arp:			    Error ARP. Unreachable device (serial number).
+			  err_no_resp:		    Error no response. Device reachable but did not provide answer to the request.
+			  err_unknown_cmd:	    Error unknown command.
+			  err_cmd_size:		    Error command size. Missing data in the received commands.
+			  err_read_only:	    Error read only. Data is read only. Cannot be written.
+			  err_cant_delete:	    Error cannot be deleted. Data is protected. It can be modified but cannot be deleted.
+			  err_default:		    Error default. Unspecified general error.
+			  err_no_space:		    Error no space. Fail to allocate memory to execute request.
+			  err_already_exist:	Error already exist. Data already exist.
+			  err_dont_exist:		Error don't exist. Attemptting to access data that doesn't exist. i.e.: out of bound object id.
+			  err_buf_too_small:	Error buffer too small. Incomplete data content.
+			  err_no_right:			Error no access right. User doesn't have the right to execute this type of request.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="ok|err_arp|err_no_resp|err_unknown_cmd|err_cmd_size|err_read_only|err_cant_delete|err_default|err_no_space|err_already_exist|err_dont_exist|err_buf_too_small|err_no_right"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="obj_type_type">
+		<xs:annotation>
+			<xs:documentation>
+			  Available object types that could be sent in the "REC", "CMD" and "EVT" elements.
+				access_lvl:         Record type: 	cfg
+									Command list: 	N/A
+			    access_tmpl:        Record type: 	cfg
+									Command list: 	N/A
+				elevator:           Record type: 	cfg
+									Command list: 	N/A
+				floor:              Record type: 	cfg
+									Command list: 	N/A
+				floor_lvl:          Record type: 	cfg
+									Command list: 	N/A
+				partition:          Record type: 	cfg|cfg2|status|status2
+									Command list: 	enter
+				door:               Record type: 	cfg|status
+									Command list: 	lock|unlock|enable|disable|reset
+				door_lock:          Record type: 	cfg|status|trouble|private
+									Command list: 	on|off|custom|global|local
+				email:              Record type: 	cfg|addr
+									Command list: 	test|muster
+				email_setting:      Record type: 	cfg
+									Command list: 	N/A
+				email_mustering:    Record type: 	cfg
+									Command list: 	N/A
+				ac:                 Record type: 	cfg
+									Command list: 	N/A
+				aux:                Record type: 	cfg|status|trouble|private
+									Command list: 	N/A
+				batt:               Record type: 	cfg|status|trouble|private
+									Command list: 	N/A
+				hardware:           Record type: 	private
+									Command list: 	N/A
+				input:              Record type: 	cfg
+									Command list: 	global|local
+				input_hw:           Record type: 	cfg|private
+									Command list: 	N/A
+				output:				Record type: 	cfg|status
+									Command list: 	on|off|custom
+				relay:				Record type: 	cfg|status
+									Command list: 	on|off|custom|global|local|toggle
+				rtc:                Record type: 	cfg|status
+									Command list: 	refresh|set
+				tamper:             Record type: 	cfg|trouble
+									Command list: 	N/A
+				vlock:              Record type: 	cfg|status
+									Command list: 	on|off|global|local|toggle
+				ip_conn:            Record type: 	cfg
+									Command list: 	N/A
+				ip_client:          Record type: 	cfg|status
+									Command list: 	N/A
+				license:            Record type: 	cfg|status
+                                    Command list: 	N/A
+				macro:              Record type: 	cfg
+									Command list: 	N/A
+				mdl_tbl:            Record type: 	cfg|status
+									Command list: 	N/A
+				mdl:                Record type: 	cfg
+									Command list: 	restart|dflt|dflt_no_ip|reset|locate_off|locate_on|global
+				reader:				Record type: 	cfg
+									Command list: 	disp_access|disp_status|cancel|global|local
+				rec_tbl:            Record type: 	cfg|info_ext
+									Command list: 	N/A
+				sched:              Record type: 	cfg
+									Command list: 	N/A
+				holiday:            Record type: 	cfg
+									Command list: 	N/A
+				aa_hub:             Record type: 	cfg|trouble|status
+                                    Command list: 	delete
+				aa_door_handle:     Record type: 	cfg|trouble|status
+                                    Command list: 	scan
+				ir_pim:             Record type: 	cfg|trouble|status|status2
+                                    Command list: 	delete|link_on|link_off|modify
+				ir_apm:             Record type: 	cfg|trouble|status
+                                    Command list: 	delete|link_on|link_off
+				user:               Record type: 	cfg|loc
+									Command list: 	loc_set
+				user_login:         Record type: 	cfg
+									Command list: 	N/A
+				user_code:          Record type: 	cfg
+									Command list: 	N/A
+				card:               Record type: 	cfg
+									Command list: 	N/A
+				learn_mode:         Record type: 	cfg
+									Command list: 	add|delete
+				camera:             Record type: 	cfg
+									Command list: 	N/A
+				bell:				N/A
+				zone:               N/A
+				system:             N/A
+				evt_save:           N/A
+				firmware:           N/A
+				zone_opt_tmpl:      N/A
+				report:             N/A
+				smoke:              N/A
+				syslog:             N/A
+				output_pwm:         N/A
+				pnp_master:         N/A
+				pnp_slave:          N/A
+				record:             N/A
+				pull_station:       N/A
+				dist:               N/A
+				led_status:         N/A
+				tact_switch:        N/A
+				web_page:           N/A
+				os:                 N/A
+				glb_access_lvl:     N/A
+				sync:               N/A
+				wdg:                N/A
+				door_status_sync:   N/A
+				interlock:          N/A
+				anti_passback:      N/A
+				master_ctrl:        N/A
+				http:               N/A
+				ssl_cert:           N/A
+				macro_tmr:          N/A
+				macro_cnt:          N/A
+				sched_activator:    N/A
+				door_offline_mode:  N/A
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="output|reader|relay|bell|door|mdl_tbl|zone|macro|input|partition|user|card|user_code|system|evt_save|rtc|rec_tbl|input_hw|sched|holiday|access_lvl|firmware|zone_opt_tmpl|report|ip_conn|smoke|learn_mode|syslog|output_pwm|hardware|pnp_master|pnp_slave|door_lock|user_login|mdl|batt|aux|ac|tamper|rec|pull_station|dist|led_status|tact_switch|web_page|os|ip_client|glb_access_lvl|sync|wdg|door_status_sync|interlock|ir_pim|ir_apm|email|email_setting|anti_passback|camera|master_ctrl|http|ssl_cert|license|vlock|macro_tmr|macro_cnt|sched_activator|elevator|door_offline_mode|floor|floor_lvl|email_mustering|aa_hub|aa_door_handle|access_tmpl"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="byte_type">
+		<xs:annotation>
+			<xs:documentation>
+			  Data is an integer represented on 1 byte.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:integer">
+			<xs:maxInclusive value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="word_type">
+		<xs:annotation>
+			<xs:documentation>
+			  Data is an integer represented on 2 bytes.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:integer">
+			<xs:maxInclusive value="65535"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="hex_type">
+		<xs:annotation>
+			<xs:documentation>
+			  Data is hexadecimal.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9A-Fa-f]+|[0-9]+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ip_type">
+		<xs:annotation>
+			<xs:documentation>
+			  Data is ipv4 ip address.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:pattern value="(25[0-5]|2[0-4][0-9]|[0-1]?[0-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|[0-1]?[0-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|[0-1]?[0-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|[0-1]?[0-9]?[0-9])"/>
+			<xs:pattern value="[0-9A-Fa-f]{8}"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="obj_status_type">
+		<xs:annotation>
+			<xs:documentation>
+			  Data is object status.
+			    free:		Available object id.
+				used:		Object id used.
+				deleted:	Objecte id that has been deleted (free).
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="deleted|used|free"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="rec_cmd_type">
+		<xs:annotation>
+			<xs:documentation>
+			  Available commands that could be sent in the "REC" element.
+				info:	Request the information related to a specific record type within the specified object type.
+				read:	Request to read the specific record type data of the specified object type and object id.
+				add:	Request to add the specific record type data in the first available object id of the specified object type.
+				write:	Request to write the specific record type data in the specified object type and object id.
+				delete:	Request to delete the specific record type data of the specified object type and object id.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="info|read|add|write|delete"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="rec_type_type">
+		<xs:annotation>
+			<xs:documentation>
+			  Available record types that could be sent in the "REC" element:
+			    cfg:		Default configuration data block. Content specific to the specified object type.
+				cfg2:		Extra configuration data block. Complement to the default data block. Used in object type "partition".
+				status:		Read only block dedicated to the default status.
+				status2:	Extra read only block used as a complement to the default status block. Used in object type "partition".
+				loc:		User location data block. Used in object type "user"
+				trouble:	Read only block dedicated to trouble status.
+				private:	Private data block. Mostly used in the hardware related object types to store hardware specific settings.
+				addr:		Email address data block. Used in the object type "email"
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="cfg|cfg2|status|status2|loc|trouble|private|addr|info_ext"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="cmd_cmd_type">
+		<xs:annotation>
+			<xs:documentation>
+			  Available commands that could be sent in the "CMD" element.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="cancel|custom|delete|disp_access|disp_status|dflt|dflt_no_ip|disable|enable|enter|global|learn_add|learn_del|link_on|link_off|loc_set|local|locate_off|locate_on|lock|modify|muster|off|on|refresh|reset|restart|scan|set|test|toggle|unlock"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="evt_cmd_type">
+		<xs:annotation>
+			<xs:documentation>
+              Available commands that could be sent in the "EVT" element:
+			    read:		Read and resolve specific events using specified event numbers and serial number.
+							No filter allowed. One device (serial number) per request.
+				query: 		Query list of events that match specified filter. The result is a list of event UTC,
+							serial number and event number.
+				query_read: Same as the "query" command but the result is the resolved events: same as read command.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="read|query|query_read"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+</xs:schema>

@@ -1,0 +1,24 @@
+# Add any directories, files, or patterns you don't want to be tracked by version control
+.cproject
+.project
+*.sha
+*.shc
+*.sni
+*.hlk
+*.hdp
+*.ARF
+*.hsf
+*.tws
+*.BKP
+*.BKS
+*.BKW
+*.nav
+*.tps
+*.shg
+doc/web_atrium/
+doc/web/.vscode/chrome/
+doc/web/build/
+.vscode/chrome/
+build/
+dist/
+node_modules/

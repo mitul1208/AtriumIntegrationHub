@@ -1,0 +1,43 @@
+<div ng-controller="SdkDemoViewerListCtrl as vm">
+  <div class="container panel panel-primary col-xs-12 col-sm-12 col-md-6 col-lg-6 fixed-panel-min fixed-panel-max" ng-show="vm.show">
+    <div class="panel-heading">
+      <div class="row">
+        <span class="col-xs-4 col-sm-4 col-md-4 col-lg-4"></span>
+        <h4 class="col-xs-6 col-sm-6 col-md-6 col-lg-6">History Log
+          <span class="badge" ng-cloak>{{ (vm.objList | filter: vm.searchText).length }}</span>
+        </h4>
+        <button type="submit" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 btn btn-default" style="float: right" ng-click="vm.clearList()">Clear</button>
+      </div>
+      <h5 class="row">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">Transaction</div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Group</div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">Object Type</div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Command</div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Response</div>
+      </h5>
+    </div>
+    <div class="panel-body">
+        <div ng-hide="vm.objList.length"><p class="text-center">SEND data to generate history</p></div>
+
+        <div class="row" ng-repeat="obj in vm.objList | filter: vm.searchText | orderBy: 'obj.trxId':true"
+            ng-class="[{odd: $odd}, {even: $even}, {selected: obj==vm.selectedObj}]"
+            ng-click="vm.selectObj(obj)"
+            ng-cloak>
+            <style>
+                .selected {
+                    background-color: #337ab7;
+                    color: white;
+                    font-weight: bold;
+                }
+            </style>
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"><a href="" ng-class="{selected: obj==vm.selectedObj}">{{obj.trxId}}</a></div>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{obj.label}}</div>
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">{{obj.type}}</div>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{obj.cmd}}</div>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <i class="fo icon-ok" ng-show="obj.ans">{{obj.err}}</i>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>

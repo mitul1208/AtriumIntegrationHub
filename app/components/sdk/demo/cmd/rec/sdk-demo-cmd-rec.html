@@ -1,0 +1,78 @@
+<div ng-controller="SdkDemoCmdRecCtrl as vm">
+  <div class="container panel panel-primary col-xs-12 col-sm-12 col-md-6 col-lg-6 fixed-panel-min" ng-show="vm.show">
+    <h3 class="panel-heading" ng-cloak>
+      <a ng-show="vm.selectedState()" ng-click="vm.close()">
+        <button type="button" class="close" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </a>
+      Demo
+      <span ng-show="vm.selectedState()">: {{ vm.objTypeNameGet() }}</span>
+    </h3>
+    <button class="btn btn-primary" style="float: right" ng-show="vm.numItemGet()" ng-click="vm.submit(objItemForm)" data-toggle="tooltip" title="{{vm.urlGet()}}">Send</button>
+    <div class="panel-body">
+      <a ng-click="vm.selectObjType()" ng-hide="vm.selectedState()"><p class="text-center">Please select object type</p></a>
+      <dl class="dl-horizontal" ng-show="vm.selectedState()">
+        <dt>Target serial number</dt>
+        <dd class="dropdown" style="width: 150px" ng-cloak>
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownSerial" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="true">
+                {{vm.obj.serial}}
+                <span class="caret"></span>
+              </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownSerial">
+            <li ng-repeat="device in vm.serialList | filter: vm.searchText| orderBy: 'serial'"><a ng-click="vm.obj.serial = device.serial">{{device.serial}}: {{device.label}}</a></li>
+          </ul>
+        </dd>
+        <dt>Name</dt>
+        <a ng-click="vm.selectObjType()">
+          <dd ng-cloak>{{ vm.objTypeNameGet() }}</dd>
+        </a>
+        <dt>Description</dt>
+        <dd ng-cloak>{{ vm.objTypeDescGet() }}</dd>
+        <dt>Sync counter</dt>
+        <dd ng-cloak>
+            <input ng-show="vm.showSyncCnt()" type="checkbox" ng-model="vm.obj.checkSyncCnt" />
+            <input ng-show="vm.showSyncCnt() && vm.obj.checkSyncCnt" type="number" min="0" class="input-sm" ng-model="vm.obj.syncCnt" />
+        </dd>
+        <dt ng-show="vm.numObjIdGet() > 0" ng-cloak>Object id</dt>
+        <dd ng-show="vm.numObjIdGet() > 0" ng-cloak>
+          <input name="objId" type="number" min="0" class="input-sm" max="{{vm.numObjIdGet()}}" ng-model="vm.obj.idMin" ng-change="vm.updateData()" placeholder="0">
+          <span ng-show="vm.showObjIdMax()">To</span>
+          <input ng-show="vm.showObjIdMax()" name="objId" type="number" min="0" class="input-sm" max="{{vm.numObjIdGet()}}" ng-model="vm.obj.idMax" placeholder="0">
+          <span>Max: {{vm.numObjIdGet()}}</span>
+        </dd>
+      </dl>
+
+      <div ng-show="vm.selectedState()">
+        <div ng-hide="vm.numItemGet()">No action available</div>
+        <div class="dropdown col-xs-12 col-sm-12 col-md-6 col-lg-6" ng-show="vm.numItemGet()" ng-cloak>
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownItem" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="true">
+                {{vm.cmdNameGet()}}
+                <span class="caret"></span>
+              </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownItem">
+            <li ng-repeat="item in vm.recCmdTbl" ng-show="vm.numRecGet()"><a ng-click="vm.selectCmd(item.cmd)">Record command: {{item.label}}</a></li>
+            <li class="divider" ng-show="vm.numRecGet() && vm.numCmdGet()"></li>
+            <li ng-repeat="item in vm.obj.objType.objCmdTbl | orderBy: 'label'"><a ng-click="vm.selectCmd(item.recTag, item);">Command: {{item.label}}</a></li>
+          </ul>
+        </div>
+        <div class="dropdown col-xs-12 col-sm-12 col-md-6 col-lg-6" ng-show="vm.isRecSelected()" ng-cloak>
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownRecCmd" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="true">
+                Record : {{vm.recTypeNameGet()}}
+                <span class="caret"></span>
+              </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownRecCmd">
+            <li ng-repeat="item in vm.obj.objType.objRecTbl | filter: vm.searchText| orderBy: 'label'"><a ng-click="vm.selectRecType(item)">Record: {{item.label}}</a></li>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="spinner" ng-show="vm.loading">
+      <img src="./shared/img/loading-container.gif" />
+    </div>
+  </div>
+</div>

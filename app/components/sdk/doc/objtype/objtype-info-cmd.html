@@ -1,0 +1,27 @@
+<div ng-controller="ObjTypeInfoCtrl as vm">
+  <div class="container panel panel-primary col-xs-11 col-sm-11 col-md-push-3 col-md-6 col-lg-push-3 col-lg-6" ng-show="vm.showCmd"
+    ng-cloak>
+    <h4 class="panel-heading" ng-cloak>
+      <button type="button" class="close" aria-label="Close" ng-click="vm.setShowStateCmd(false)">
+        <span aria-hidden="true">&times;</span>
+      </button> Object command list
+      <span class="badge">{{vm.numCmdGet()}}</span>
+    </h4>
+    <div class="panel-body">
+      <ul class=" list-unstyled">
+        <table class="table">
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Description</th>
+          </tr>
+          <tr ng-repeat="cmdTbl in vm.objType.objCmdTbl | filter: vm.searchText| orderBy: 'label'">
+            <td>{{$index + 1}}</td>
+            <td><a ng-click="vm.selectCmd(cmdTbl)">{{cmdTbl.label}}</a></td>
+            <td>{{cmdTbl.desc}}</td>
+          </tr>
+        </table>
+      </ul>
+    </div>
+  </div>
+</div>

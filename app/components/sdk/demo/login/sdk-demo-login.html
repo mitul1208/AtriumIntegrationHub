@@ -1,0 +1,72 @@
+﻿<ng-include src="'./components/menu/menu.html'"></ng-include>
+
+<div class="container login-view">
+    <div class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="panel-title">SDK Login</div>
+            </div>
+
+            <div class="panel-body">
+                <div ng-show="vm.error != 'ok'" class="alert alert-danger ng-hide" ng-cloak>
+                    <div ng-switch="vm.error">
+                        <span ng-switch-when="err_password">The login ID or password is incorrect. Please try again.</span>
+                        <span ng-switch-when="err_access_right">You dont have the right to access to the web interface.</span>
+                        <span ng-switch-when="err_alloc_fail">No session available.</span>
+                        <span ng-switch-when="err_timeout">Your session has timed out.</span>
+                        <span ng-switch-when="err_incomplete">The login ID and password are required.</span>
+                        <span ng-switch-when="err_license">No SDK license.</span>
+                    </div>
+                </div>
+
+                <div ng-hide="vm.error != 'ok'" class="ng-hide" ng-cloak>
+                    <!--<div class="alert alert-danger ng-hide" ng-show="vm.isSessionExpired">
+                        <span>Your session has been reset.</span>
+                    </div>-->
+                    <div class="alert alert-danger ng-hide" ng-show="vm.locked" ng-cloak>
+                        <span>Too many bad login attempts. Your session is locked.</span>
+                    </div>
+                </div>
+
+                <form class="form-horizontal" role="form" name="form" ng-submit="vm.connect()">
+                    <fieldset ng-disabled="vm.locked || vm.isProcessing">
+                        <div class="input-group" style="width: 100%">
+                            <div class="module-name" ng-cloak>{{vm.mdlName}}</div>
+                        </div>
+
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fo icon-cog"></i></span>
+                            <input type="url" class="form-control" name="url" ng-init="vm.setBaseUrl()" ng-model="vm.url" placeholder="http://192.168.2.204/">
+                            <!-- build:remove -->
+                            <span ng-init="vm.setMyBaseUrl()"></span>
+                            <!-- endbuild -->
+                        </div>
+
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fo icon-user"></i></span>
+                            <input type="text" class="form-control" name="username" ng-model="vm.username" placeholder="Login ID">
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fo icon-lock"></i></span>
+                            <input type="password" class="form-control" name="password" ng-model="vm.password" placeholder="Password">
+                        </div>
+                        <!-- Button -->
+                        <div style="margin-top: 10px; margin-bottom: 0;" class="form-group">
+                            <div class="col-sm-6 col-sm-push-6 controls">
+                                <button class="btn btn-primary btn-atrium" style="float: right" label="Enter" data-toggle="tooltip" title="{{vm.url}}login_sdk.xml">Login</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+
+                <div class="spinner" ng-show="vm.isProcessing">
+                    <img src="./shared/img/loading-container.gif" />
+                </div>
+            </div>
+
+            <div class="panel-footer">
+                <a href="http://www.cdvi.ca" class="logo-cdvi"></a>
+            </div>
+        </div>
+    </div>
+</div>

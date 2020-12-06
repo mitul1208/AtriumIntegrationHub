@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SDK xmlns="https://www.cdvi.ca/" >
+	<RECORDS>
+		<REC trans_id="1" cmd="read" sernum="0A221037" type="user" id_min="1" id_max="3" rec="cfg" />
+		<REC trans_id="2" cmd="write" sernum="0A221037" type="user" id_min="1" id_max="1" rec="cfg" >
+			<DATA word25="124" />
+		</REC>
+		<REC trans_id="3" cmd="add" sernum="0A221037" type="user" id_min="0" id_max="0" rec="cfg" >
+			<DATA obj_status="used" valid="1" guid="0123456789ABCDEF0123456789ABCDEF" />
+		</REC>
+		<REC trans_id="4" cmd="delete" sernum="0A221037" type="user" id_min="3" id_max="3" rec="cfg" />
+		<REC trans_id="6" cmd="read" sernum="0A221037" type="user" id_min="1" id_max="3" rec="cfg" >
+			<DATA label3="" bit8="" word25="" />
+		</REC>
+	</RECORDS>
+	<COMMANDS>
+		<CMD trans_id="11" cmd="unlock" sernum="0A221037" type="door" id_min="0" id_max="1" />
+		<CMD trans_id="12" cmd="lock" sernum="0A221037" type="door" id_min="0" id_max="1" />
+	</COMMANDS>
+	<EVENTS>
+		<EVT trans_id="14" sernum="0A221037" cmd="read" id_min="1" id_max="10" />
+		<EVT trans_id="15" sernum="0A221037" type_min="0" type_max="300" last_ts_utc="-1" last_sernum="FFFFFFFF" last_num="-1" cmd="query" id_min="1" id_max="65535" />
+		<EVT trans_id="16" sernum="0A221037" type_min="0" type_max="300" last_ts_utc="-1" last_sernum="FFFFFFFF" last_num="-1" cmd="query_read" id_min="1" id_max="65535" />
+		<EVT trans_id="17" sernum="0A221037" cmd="read" id_min="3" id_max="3" />
+	</EVENTS>
+</SDK>

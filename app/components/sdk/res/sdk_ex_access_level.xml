@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SDK_EXAMPLE_ACC_LVL>
+    <SDK comment='SDK EXAMPLE - ACCESS LEVEL - PART 1: ADD HOLIDAY - REQUEST TO CONTROLLER' xmlns='https://www.cdvi.ca/'>
+        <RECORDS comment='Add new  National day  holiday that occurs every year (bit4=1) for a full day (dword10=86400) on the 24th of june (utc_time7=594DAB80).'>
+            <REC trans_id='411' cmd='add' sernum='0A221037' type='holiday' rec='cfg'>
+                <DATA obj_status='used' valid='1' label3='National day' bit4='1' bit5='0' utc_time7='594DAB80' byte8='0' dword9='0' dword10='86400'/>
+            </REC>
+        </RECORDS>
+    </SDK>
+    <SDK comment='SDK EXAMPLE - ACCESS LEVEL - PART 1: ADD HOLIDAY - ANSWER FROM CONTROLLER' xmlns='https://www.cdvi.ca/'>
+        <RECORDS>
+            <REC trans_id='411' cmd='add' sernum='0A221037' type='holiday' rec='cfg' res='ok'>
+                <COMMENT>Test the DATA result (res=ok) and backup the new  National day  holiday object id (id=6).</COMMENT>
+                <DATA res='ok' id='6' cnt='7' obj_status='used' valid='1' ro='0' protect='0' guid2='00000000000000000000000000000000' label3='National day' bit4='1' bit5='0' utc_time7='594DAB80' byte8='0' dword9='0' dword10='86400'/>
+            </REC>
+        </RECORDS>
+    </SDK>
+
+    <SDK comment='SDK EXAMPLE - ACCESS LEVEL - PART 2: ADD SCHEDULE - REQUEST TO CONTROLLER' xmlns='https://www.cdvi.ca/'>
+        <RECORDS comment='Add new  Schedule 16H-00H  schedule that occurs every week (dword5=604800) from 16H (dword6_x) to midnight. Exclude holidays  New year,  Christmas  and  National day  (bit_field9=43000000000000000000000000).'>
+            <REC trans_id='416' cmd='add' sernum='0A221037' type='sched' rec='cfg'>
+                <DATA obj_status='used' valid='1' label3='Schedule 16H-00H' utc_time4='4D1E6E80' dword5='604800' dword6_0='230400' dword6_1='316800' dword6_2='403200' dword6_3='489600' dword6_4='576000' dword7_0='262800' dword7_1='349200' dword7_2='435600' dword7_3='522000' dword7_4='608400' bit_field8='00000000000000000000000000' bit_field9='43000000000000000000000000'/>
+            </REC>
+        </RECORDS>
+    </SDK>
+    <SDK comment='SDK EXAMPLE - ACCESS LEVEL - PART 2: ADD SCHEDULE - ANSWER FROM CONTROLLER' xmlns='https://www.cdvi.ca/'>
+        <RECORDS>
+            <REC trans_id='416' cmd='add' sernum='0A221037' type='sched' rec='cfg' res='ok'>
+                <COMMENT>Test the DATA result (res=ok) and backup the new  Schedule 16H-00H  schedule object id (id=5).</COMMENT>
+                <DATA res='ok' id='5' cnt='5' obj_status='used' valid='1' ro='0' protect='0' guid2='00000000000000000000000000000000' label3='Schedule 16H-00H' utc_time4='4D1E6E80' dword5='604800' dword6_0='230400' dword6_1='316800' dword6_2='403200' dword6_3='489600' dword6_4='576000' dword6_5='0' dword6_6='0' dword6_7='0' dword6_8='0' dword6_9='0' dword6_10='0' dword6_11='0' dword6_12='0' dword6_13='0' dword6_14='0' dword6_15='0' dword6_16='0' dword6_17='0' dword6_18='0' dword6_19='0' dword6_20='0' dword6_21='0' dword6_22='0' dword6_23='0' dword6_24='0' dword6_25='0' dword6_26='0' dword6_27='0' dword6_28='0' dword6_29='0' dword6_30='0' dword6_31='0' dword6_32='0' dword6_33='0' dword6_34='0' dword6_35='0' dword6_36='0' dword6_37='0' dword6_38='0' dword6_39='0' dword6_40='0' dword6_41='0' dword6_42='0' dword6_43='0' dword6_44='0' dword6_45='0' dword6_46='0' dword6_47='0' dword6_48='0' dword6_49='0' dword6_50='0' dword6_51='0' dword6_52='0' dword6_53='0' dword6_54='0' dword6_55='0' dword6_56='0' dword6_57='0' dword6_58='0' dword6_59='0' dword6_60='0' dword6_61='0' dword6_62='0' dword6_63='0' dword6_64='0' dword6_65='0' dword6_66='0' dword6_67='0' dword6_68='0' dword6_69='0' dword6_70='0' dword6_71='0' dword6_72='0' dword6_73='0' dword6_74='0' dword6_75='0' dword6_76='0' dword6_77='0' dword6_78='0' dword6_79='0' dword6_80='0' dword6_81='0' dword6_82='0' dword6_83='0' dword6_84='0' dword6_85='0' dword6_86='0' dword6_87='0' dword6_88='0' dword6_89='0' dword6_90='0' dword6_91='0' dword6_92='0' dword6_93='0' dword6_94='0' dword6_95='0' dword6_96='0' dword6_97='0' dword6_98='0' dword6_99='0' dword7_0='262800' dword7_1='349200' dword7_2='435600' dword7_3='522000' dword7_4='608400' dword7_5='0' dword7_6='0' dword7_7='0' dword7_8='0' dword7_9='0' dword7_10='0' dword7_11='0' dword7_12='0' dword7_13='0' dword7_14='0' dword7_15='0' dword7_16='0' dword7_17='0' dword7_18='0' dword7_19='0' dword7_20='0' dword7_21='0' dword7_22='0' dword7_23='0' dword7_24='0' dword7_25='0' dword7_26='0' dword7_27='0' dword7_28='0' dword7_29='0' dword7_30='0' dword7_31='0' dword7_32='0' dword7_33='0' dword7_34='0' dword7_35='0' dword7_36='0' dword7_37='0' dword7_38='0' dword7_39='0' dword7_40='0' dword7_41='0' dword7_42='0' dword7_43='0' dword7_44='0' dword7_45='0' dword7_46='0' dword7_47='0' dword7_48='0' dword7_49='0' dword7_50='0' dword7_51='0' dword7_52='0' dword7_53='0' dword7_54='0' dword7_55='0' dword7_56='0' dword7_57='0' dword7_58='0' dword7_59='0' dword7_60='0' dword7_61='0' dword7_62='0' dword7_63='0' dword7_64='0' dword7_65='0' dword7_66='0' dword7_67='0' dword7_68='0' dword7_69='0' dword7_70='0' dword7_71='0' dword7_72='0' dword7_73='0' dword7_74='0' dword7_75='0' dword7_76='0' dword7_77='0' dword7_78='0' dword7_79='0' dword7_80='0' dword7_81='0' dword7_82='0' dword7_83='0' dword7_84='0' dword7_85='0' dword7_86='0' dword7_87='0' dword7_88='0' dword7_89='0' dword7_90='0' dword7_91='0' dword7_92='0' dword7_93='0' dword7_94='0' dword7_95='0' dword7_96='0' dword7_97='0' dword7_98='0' dword7_99='0' bit_field8='00000000000000000000000000' bit_field9='43000000000000000000000000'/>
+            </REC>
+        </RECORDS>
+    </SDK>
+
+    <SDK comment='SDK EXAMPLE - ACCESS LEVEL - PART 3: ADD ACCESS LEVEL - REQUEST TO CONTROLLER' xmlns='https://www.cdvi.ca/'>
+        <RECORDS comment='Add new access level  Access level night shift  that uses the new schedule  Schedule 16H-00H  (id=5) for all doors.'>
+            <REC trans_id='429' cmd='add' sernum='0A221037' type='access_lvl' id='0' rec='cfg'>
+                <DATA obj_status='used' valid='1' label3='Access level night shift' word4_0='5' word4_1='5' word4_2='5' word4_3='5' word4_4='5' word4_5='5' word4_6='5' word4_7='5' word4_8='5' word4_9='5'/>
+            </REC>
+        </RECORDS>
+    </SDK>
+    <SDK comment='SDK EXAMPLE - ACCESS LEVEL - PART 3: ADD ACCESS LEVEL - ANSWER FROM CONTROLLER' xmlns='https://www.cdvi.ca/'>
+        <RECORDS>
+            <REC trans_id='429' cmd='add' sernum='0A221037' type='access_lvl' rec='cfg' res='ok'>
+                <COMMENT>Test the DATA result (res=ok) and backup the new  Access level night shift  access level object id (id=5).</COMMENT>
+                <DATA res='ok' id='4' cnt='8' obj_status='used' valid='1' ro='0' protect='0' guid2='00000000000000000000000000000000' label3='Access level night shift' word4_0='5' word4_1='5' word4_2='5' word4_3='5' word4_4='5' word4_5='5' word4_6='5' word4_7='5' word4_8='5' word4_9='5'/>
+            </REC>
+        </RECORDS>
+    </SDK>
+
+    <SDK comment='SDK EXAMPLE - ACCESS LEVEL - PART 3: ADD ACCESS LEVEL GROUP - REQUEST TO CONTROLLER' xmlns='https://www.cdvi.ca/'>
+        <RECORDS comment='Add new access level group  Access Level Group night shift  that uses the access level  Access Level Programming  (id=2) and the new access level  Access level night shift  (id=5).'>
+            <REC trans_id='432' cmd='add' sernum='0A221037' type='access_tmpl' id='0' rec='cfg'>
+                <DATA obj_status='used' valid='1' label3='Access Level Group night shift' word4_0='2' word4_1='5' word4_2='65535' word4_3='65535' word4_4='65535' word4_5='65535' word4_6='65535' word4_7='65535' word4_8='65535' word4_9='65535' word4_10='65535' word4_11='65535' word4_12='65535' word4_13='65535' word4_14='65535' word4_15='65535' word4_16='65535' word4_17='65535' word4_18='65535' word4_19='65535' word4_20='65535' word4_21='65535' word4_22='65535' word4_23='65535' word4_24='65535'/>
+            </REC>
+        </RECORDS>
+    </SDK>
+    <SDK comment='SDK EXAMPLE - ACCESS LEVEL - PART 4: ADD ACCESS LEVEL GROUP - ANSWER FROM CONTROLLER' xmlns='https://www.cdvi.ca/'>
+        <RECORDS>
+            <REC trans_id='432' cmd='add' sernum='0A221037' type='access_tmpl' rec='cfg' res='ok'>
+                <COMMENT>Test the DATA result (res=ok).</COMMENT>
+                <DATA res='ok' id='2' cnt='5' obj_status='used' valid='1' ro='0' protect='0' guid2='00000000000000000000000000000000' label3='Access Level Group night shift' word4_0='2' word4_1='5' word4_2='65535' word4_3='65535' word4_4='65535' word4_5='65535' word4_6='65535' word4_7='65535' word4_8='65535' word4_9='65535' word4_10='65535' word4_11='65535' word4_12='65535' word4_13='65535' word4_14='65535' word4_15='65535' word4_16='65535' word4_17='65535' word4_18='65535' word4_19='65535' word4_20='65535' word4_21='65535' word4_22='65535' word4_23='65535' word4_24='65535'/>
+            </REC>
+        </RECORDS>
+    </SDK>
+</SDK_EXAMPLE_ACC_LVL>

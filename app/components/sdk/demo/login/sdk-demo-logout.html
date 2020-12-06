@@ -1,0 +1,9 @@
+﻿<ng-include src="'./components/menu/menu.html'"></ng-include>
+
+<div class="container logout">
+    <!--Will redirect to login page-->
+    <!-- build:remove -->
+    <div ng-init="vm.logout()"></div>                       <!--used in debug to force sending the get(/logout.html) request to controller since file is local in debug-->
+    <!-- endbuild -->
+    <div ng-init="vm.redirect()"></div>
+</div>

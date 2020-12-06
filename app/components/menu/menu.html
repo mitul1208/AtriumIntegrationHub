@@ -1,0 +1,44 @@
+﻿<nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="MenuController as vm">
+    <div class="container-fluid">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+                <!--<span style="color: white">Menu</span>-->
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="#/"><div class="navbar-brand"></div></a>
+
+            <!-- title can be overriden by controller -->
+            <span class="nav-current-page visible-xs-block" observe>{{vm.getLabel(vm.pageLabel)}}</span>
+        </div>
+
+        <ul class="nav navbar-right top-nav navbar-nav hidden-xs">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" style="text-align: right;"><i class="fo icon-user"></i><span> {{vm.sessionUser}} </span><b class="caret" style="margin-bottom: 2px;"></b></a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a ng-click="vm.onLogout()"><i class="fo icon-power"></i> <span>{{vm.getLabel("menu_lbl_logout")}}</span></a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <!-- generate the menu items-->
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li ng-repeat="menu in vm.menus" ng-class="{active: menu.isActive}">
+                    <a ng-if="menu.href" href="#{{menu.href}}" data-toggle="dropdown" ng-class="{'dropdown-toggle': menu.menus}">{{vm.getLabel(menu.label)}}<b class="caret" style="margin-bottom: 2px;"></b></a>
+
+                    <a ng-if="menu.menus" data-toggle="dropdown" ng-class="{'dropdown-toggle': menu.menus}">{{vm.getLabel(menu.label)}}<b class="caret" style="margin-bottom: 2px;"></b></a>
+
+                    <ul ng-if="menu.menus" class="dropdown-menu">
+                        <li ng-repeat="submenu in menu.menus" ng-class="{active: submenu.isActive}">
+                            <a ng-href="#{{submenu.href}}">{{vm.getLabel(submenu.label)}}</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,62 @@
+<div ng-controller="SdkDemoEvtCmdCtrl as vm">
+  <div class="container panel panel-primary col-xs-12 col-sm-12 col-md-6 col-lg-6 fixed-panel-min" ng-show="vm.show">
+    <h3 class="panel-heading" ng-cloak>
+      Event commands
+    </h3>
+    <button type="submit" class="btn btn-primary" style="float: right" ng-click="vm.submit()" data-toggle="tooltip" title="{{vm.urlGet()}}">Send</button>
+
+    <div class="panel-body">
+      <dl class="dl-horizontal">
+        <dt>Target serial number</dt>
+        <dd class="dropdown" style="width: 150px" ng-cloak>
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownSerial" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="true">
+                {{vm.rqst.serial}}
+                <span class="caret"></span>
+              </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownSerial">
+            <li ng-repeat="device in vm.serialList | filter: vm.searchText| orderBy: 'serial'"><a ng-click="vm.rqst.serial = device.serial">{{device.serial}}: {{device.label}}</a></li>
+          </ul>
+        </dd>
+        <dt>Event command</dt>
+        <dd class="dropdown" style="width: 150px" ng-cloak>
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownEvtCmd" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="true" ng-cloak>
+            {{vm.evtCmdLabelGet()}}
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownEvtCmd">
+            <li ng-repeat="cmd in vm.evtCmd | orderBy: 'label'"><a ng-click="vm.selectCmd(cmd)">{{cmd.label}}</a></li>
+          </ul>
+        </dd>
+        <dt>Object id</dt>
+        <dd ng-cloak>
+          <input name="objId" type="number" min="0" class="input-sm" style="width: 80px" ng-model="vm.rqst.idMin" placeholder="0">
+          <input name="objId" type="number" min="0" class="input-sm" style="width: 80px" ng-model="vm.rqst.idMax" placeholder="0">
+          <label ng-show='vm.rqst.cmd=="read" && vm.idLast!=""'>Last = {{vm.idLast}}</label>
+        </dd>
+      </dl>
+      <div class="panel panel-default" ng-hide='vm.rqst.cmd=="read"'>
+        <div class="panel-heading">Event filtering</div>
+        <form class="panel-body">
+          <dl class="dl-horizontal">
+            <dt>Last time stamp</dt>
+            <dd ng-cloak>{{ vm.rqst.lastTsStr }}</dd>
+            <dt>Last serial number</dt>
+            <dd ng-cloak>{{ vm.rqst.lastSernum }}</dd>
+            <dt>Last event number</dt>
+            <dd ng-cloak>{{ vm.rqst.lastNum }}</dd>
+          </dl>
+          <div class="row">
+            <button type="submit" class="btn btn-default col-xs-6 col-sm-6 col-md-3 col-lg-3" ng-click="vm.resetEvtSelected()" title="Reset last event filter">Reset filter</button>
+            <button type="submit" class="btn btn-default col-xs-6 col-sm-6 col-md-3 col-lg-3" ng-click="vm.updateLastEvt()" ng-disabled="vm.disableUpdateToLast()" title="Update to last event from the current event list">Update to last</button>
+            <span class="col-xs-12 col-sm-12 col-md-6 col-lg-6">Select any event to update the event filter</span>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="spinner" ng-show="vm.loading">
+      <img src="./shared/img/loading-container.gif" />
+    </div>
+  </div>
+</div>

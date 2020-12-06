@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SDK_EXAMPLE_MDL_CAM>
+    <SDK comment='SDK EXAMPLE - MODULE CAM - PART 1: ADD IP CLIENT - REQUEST TO CONTROLLER' xmlns='https://www.cdvi.ca/'>
+        <RECORDS comment='Ask master  0A221037  to add new IP device  00000A98  at address  192.168.2.219:10000  using connection key  admin  and web port  80.'>
+            <REC trans_id='1' cmd='add' sernum='0A221037' type='ip_client' id='0' rec='cfg'>
+                <DATA obj_status='used' valid='1' label2='A22 [2-Door Controller]' serial3='00000A98' ip4='192.168.2.219' word5='10000' pswd6='admin' word8='80'/>
+            </REC>
+        </RECORDS>
+    </SDK>
+    <SDK comment='SDK EXAMPLE - MODULE CAM - PART 1: ADD IP CLIENT - ANSWER FROM CONTROLLER' xmlns='https://www.cdvi.ca/'>
+        <RECORDS comment='Validate the result (res) of the DATA block. and backup the id of the new IP client. In this case, id=0.'>
+            <REC trans_id='1' cmd='add' sernum='0A221037' type='ip_client' rec='cfg' res='ok'>
+                <DATA res='ok' id='0' cnt='6' obj_status='used' valid='1' ro='0' protect='0' label2='A22 [2-Door Controller]' serial3='00000A98' ip4='192.168.2.219' word5='10000' pswd6='admin' url7='' word8='80' utf9=''/>
+            </REC>
+        </RECORDS>
+    </SDK>
+
+    <SDK comment='SDK EXAMPLE - MODULE CAM - PART 2: GET IP CLIENT STATUS - REQUEST TO CONTROLLER' xmlns='https://www.cdvi.ca/'>
+        <RECORDS comment='Poll the status of the new IP client (id=0) until it goes online (1).'>
+            <REC trans_id='2' cmd='read' sernum='0A221037' type='ip_client' id='0' rec='status'>
+            </REC>
+        </RECORDS>
+    </SDK>
+    <SDK comment='SDK EXAMPLE - MODULE CAM - PART 2: GET IP CLIENT STATUS - ANSWER FROM CONTROLLER' xmlns='https://www.cdvi.ca/'>
+        <RECORDS comment='The status of the new IP client (id=0) is now online (byte0=1) so the SDK can interact with it.'>
+            <REC trans_id='2' cmd='read' sernum='0A221037' type='ip_client' rec='status' res='ok'>
+                <DATA res='ok' id='0' cnt='14' byte0='1'/>
+            </REC>
+        </RECORDS>
+    </SDK>
+
+    <SDK comment='SDK EXAMPLE - MODULE CAM - PART 3: ADD MODULE CAMERA AND READ DOOR CFG - REQUEST TO CONTROLLER' xmlns='https://www.cdvi.ca/'>
+        <RECORDS>
+            <REC trans_id='395' cmd='add' sernum='00000A98' type='camera' id='0' rec='cfg'>
+                <COMMENT>Ask master 0A221037 to add new a camera in the sub-controller 00000A98 along with a live feed url and a ratio of 16/9.</COMMENT>
+                <DATA obj_status='used' valid='1' label2='Front door camera' url4='https://www.youtube.com/embed/v2AC41dglnM' word5='16' word6='9'/>
+            </REC>
+            <REC trans_id='396' cmd='read' sernum='0A221037' type='door' id='0' rec='cfg'>
+                <COMMENT>Read configuration of 00000A98 door id 0.</COMMENT>
+            </REC>
+        </RECORDS>
+    </SDK>
+    <SDK comment='SDK EXAMPLE - MODULE CAM - PART 3: ADD MODULE CAMERA AND READ DOOR CFG - ANSWER FROM CONTROLLER' xmlns='https://www.cdvi.ca/'>
+        <RECORDS>
+            <REC trans_id='395' cmd='add' sernum='00000A98' type='camera' rec='cfg' res='ok'>
+                <COMMENT>Test the DATA result (res=ok) and backup the new camera object id (id=0).</COMMENT>
+                <DATA res='ok' id='0' cnt='1' obj_status='used' valid='1' ro='0' protect='0' label2='Front door camera' url3='' url4='https://www.youtube.com/embed/v2AC41dglnM' word5='16' word6='9' byte7='0' byte8='0' utf9='' pswd10='çã¬±ï©åèºà°³á æ¤îïµ³î»èµÐ¦ã±ç¹ãäìî§µå¼±æí' serial11='00000000' byte12='0'/>
+            </REC>
+            <REC trans_id='397' cmd='read' sernum='00000A98' type='door' rec='cfg' res='ok'>
+                <COMMENT>Test the DATA result (res=ok) and backup the door configuration to prepare for door cfg modification.</COMMENT>
+                <DATA res='ok' id='0' cnt='1' obj_status='used' valid='1' ro='0' protect='0' label2='00-00-0A-98: Door 01' bit3_0='1' bit3_1='1' bit4_0='0' bit4_1='0' bit5_0='1' bit5_1='1' bit6_0='0' bit6_1='0' bit7_0='0' bit7_1='0' bit8_0='0' bit8_1='0' bit9_0='1' bit9_1='1' bit10_0='0' bit10_1='0' bit11_0='0' bit11_1='0' bit12_0='1' bit12_1='1' bit13_0='0' bit13_1='0' bit14_0='0' bit14_1='1' bit15_0='0' bit15_1='0' bit16_0='0' bit16_1='0' bit17_0='0' bit17_1='0' bit18_0='0' bit18_1='0' bit19_0='0' bit19_1='0' bit20_0='0' bit20_1='0' serial21_0='00000000' serial21_1='00000A98' byte22_0='0' byte22_1='0' serial23_0='00000000' serial23_1='00000000' byte24_0='0' byte24_1='0' serial25_0='00000000' serial25_1='00000A98' byte26_0='0' byte26_1='1' serial27_0='00000000' serial27_1='00000000' byte28_0='0' byte28_1='0' serial29_0='00000A98' serial29_1='00000000' byte30_0='0' byte30_1='0' serial31_0='00000000' serial31_1='00000000' byte32_0='0' byte32_1='0' byte33_0='0' byte33_1='0' byte34_0='0' byte34_1='0' byte35_0='0' byte35_1='0' bit36='0' bit37='0' bit38='1' bit39='0' bit40='0' bit41='0' serial42='00000A98' byte43='0' serial44='00000A98' byte45='0' word46='0' byte47='5' byte48='15' byte49='15' byte50='45' byte51='5' serial52='00000A98' serial53_0='00000000' serial53_1='00000000' byte54_0='0' byte54_1='0'/>
+            </REC>
+        </RECORDS>
+    </SDK>
+
+    <SDK comment='SDK EXAMPLE - MODULE CAM - PART 4: BIND MODULE CAMERA TO MODULE DOOR - REQUEST TO CONTROLLER' xmlns='https://www.cdvi.ca/'>
+        <RECORDS comment='Bind camera  00000A98-0  to door  00000A98-0  on side A (serial53_0 / byte54_0)'>
+            <REC trans_id='398' cmd='write' sernum='00000A98' type='door' id='0' rec='cfg'>
+                <DATA serial53_0='00000A98' byte54_0='0'/>
+            </REC>
+        </RECORDS>
+    </SDK>
+    <SDK comment='SDK EXAMPLE - MODULE CAM - PART 4: BIND MODULE CAMERA TO MODULE DOOR - ANSWER FROM CONTROLLER' xmlns='https://www.cdvi.ca/'>
+        <RECORDS comment='Test the DATA result (res=ok).'>
+            <REC trans_id='398' cmd='write' sernum='00000A98' type='door' rec='cfg' res='ok'>
+                <DATA res='ok' id='0' cnt='2' serial53_0='00000A98' byte54_0='0'/>
+            </REC>
+        </RECORDS>
+    </SDK>
+</SDK_EXAMPLE_MDL_CAM>

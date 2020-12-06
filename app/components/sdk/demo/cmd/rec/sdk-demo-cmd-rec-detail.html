@@ -1,0 +1,44 @@
+<div ng-controller="SdkDemoCmdRecDetailCtrl as vm">
+  <div class="container panel panel-primary col-xs-12 col-sm-12 col-md-6 col-lg-6" ng-show="vm.show" ng-cloak>
+    <h5 class="panel-heading">
+      <div class="row">
+        <div class="pull-right">
+          <div class="btn-group" role="group" aria-label="...">
+            <button class="btn btn-default btn-xs" ng-click='vm.setTagDisp("basic");' ng-class='{active: vm.tagDisp!="adv"}'>Basic</button>
+            <button class="btn btn-default btn-xs" style="margin-right:35px;" ng-click='vm.setTagDisp("adv");' ng-class='{active: vm.tagDisp=="adv"}'>Advanced</button>
+          </div>
+          <a ng-click="vm.close()">
+            <button type="button" class="close" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><input type="checkbox" ng-disabled="!vm.data.checkEnable" ng-model="vm.checkAll" ng-change="vm.updateCheck(vm.checkAll)" /></div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Name</div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">Details</div>
+        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">Data</div>
+      </div>
+    </h5>
+
+    <div class="panel-body" ng-repeat="tag in vm.getFilterList() track by $index" ng-class="{odd: $odd, even: $even}">
+      <div class="row">
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><input type="checkbox" ng-disabled="!vm.data.checkEnable" ng-model="tag.check" /></div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{tag.label}}</div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">{{tag.desc}}</div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <div ng-repeat="x in tag.dataTbl">
+            <span ng-show="tag.dataTbl.length > 1">[{{$index + 1}}]</span>
+            <tag-data
+              tag="tag"
+              data="x.data"
+              objstatustbl="vm.objStatusTbl"
+              disableget="vm.disableGet(tag)"
+              checktag="vm.checkTag(tag)" >
+            </tag-data>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

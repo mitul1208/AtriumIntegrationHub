@@ -1,0 +1,74 @@
+<div ng-controller="ObjTypeInfoCtrl as vm">
+  <div class="container panel panel-primary col-xs-11 col-sm-push-3 col-sm-11 col-md-push-3 col-md-6 col-lg-push-3 col-lg-6"
+    ng-show="vm.showInfo">
+    <h3 class="panel-heading" ng-cloak>
+      <a ng-href="#/sdk/doc/objtypes/">
+        <button type="button" class="close" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </a>
+      Object informations : {{ vm.objType.name }}
+    </h3>
+
+    <div class="panel-body">
+      <dl class="dl-horizontal">
+        <dt>Name</dt>
+        <dd ng-cloak>{{ vm.objType.name }}</dd>
+        <dt>Description</dt>
+        <dd ng-cloak>{{ vm.objType.desc }}</dd>
+        <dt>Tag name</dt>
+        <dd ng-cloak>{{ vm.objType.objTypeTag }}</dd>
+        <dt>Object Type Id</dt>
+        <dd ng-cloak>{{ vm.objType.objTypeId }}</dd>
+        <dt>Number of object id</dt>
+        <dd ng-cloak>{{ vm.objType.numObjIdDflt }}</dd>
+        <dt>Group</dt>
+        <dd ng-cloak>{{ vm.objType.group }}</dd>
+      </dl>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="dropdown" ng-show="vm.numRecGet()" ng-cloak>
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownRec" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="true">
+                Object records
+                <span class="caret"></span>
+                <span class="badge" ng-click="vm.setShowStateRec(true)">{{vm.numRecGet()}}</span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownRec">
+                <li ng-repeat="recTbl in vm.objType.objRecTbl | filter: vm.searchText| orderBy: 'label'"><a ng-click="vm.selectRec(recTbl)">{{recTbl.label}}</a></li>
+              </ul>
+            </th>
+          </tr>
+          <tr>
+            <th class="dropdown" ng-show="vm.numCmdGet()" ng-cloak>
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownCmd" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="true">
+                Object commands
+                <span class="caret"></span>
+                <span class="badge" ng-click="vm.setShowStateCmd(true)">{{vm.numCmdGet()}}</span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownCmd">
+                <li ng-repeat="cmdTbl in vm.objType.objCmdTbl | filter: vm.searchText| orderBy: 'label'"><a ng-click="vm.selectCmd(cmdTbl)">{{cmdTbl.label}}</a></li>
+              </ul>
+            </th>
+          </tr>
+          <tr>
+            <th>
+              <button class="btn btn-default" type="button" ng-show="vm.numEvtGet()" ng-click="vm.setShowStateEvt(true)" ng-cloak>
+                Object events
+                <span class="badge" ng-click="vm.setShowStateEvt(true)">{{vm.numEvtGet()}}</span>
+            </button>
+            </th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+
+    <div class="spinner" ng-show="vm.loading">
+      <img src="./shared/img/loading-container.gif" />
+    </div>
+
+  </div>
+</div>

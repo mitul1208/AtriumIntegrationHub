@@ -1,0 +1,43 @@
+<div ng-controller="SdkDemoEvtListCtrl as vm">
+  <div class="container panel panel-primary col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-show="vm.show">
+    <div class="panel-heading">
+      <div class="row">
+        <a ng-click="vm.close()">
+          <button type="button" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </a>
+        <span class="col-xs-4 col-sm-4 col-md-4 col-lg-4"></span>
+        <h4 class="col-xs-6 col-sm-6 col-md-6 col-lg-6">Event list
+          <span class="badge" ng-cloak>{{ (vm.evtList | filter: vm.searchText).length }}</span>
+        </h4>
+        <button type="submit" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 btn btn-default" style="float: right" ng-click="vm.clearList()">Clear</button>
+      </div>
+      <h5 class="row">
+        <div class="hidden-xs hidden-sm col-md-1 col-lg-1">Id</div>
+        <div class="hidden-xs hidden-sm col-md-1 col-lg-1">Time</div>
+        <div class="hidden-xs hidden-sm col-md-1 col-lg-1">Serial</div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">Event</div>
+        <div class="col-xs-2 col-sm-2 col-md-1 col-lg-1">Obj serial</div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Obj type</div>
+        <div class="col-xs-2 col-sm-2 col-md-1 col-lg-1">Obj id</div>
+        <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">Label</div>
+      </h5>
+    </div>
+    <div class="panel-body" ng-repeat="evt in vm.evtList | filter: vm.searchText| orderBy: ['-timeLoc', '-id']" ng-class="{odd: $odd, even: $even}"
+      ng-cloak>
+      <div class="row">
+        <a ng-click="vm.selectObj(evt)">
+          <div class="hidden-xs hidden-sm col-md-1 col-lg-1">{{evt.id}}</div>
+          <div class="hidden-xs hidden-sm col-md-1 col-lg-1">{{evt.timeLoc}}</div>
+          <div class="hidden-xs hidden-sm col-md-1 col-lg-1">{{evt.serial}}</div>
+          <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">{{evt.objEvt}}</div>
+          <div class="col-xs-2 col-sm-2 col-md-1 col-lg-1">{{evt.objSerial}}</div>
+          <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{evt.objType}}</div>
+          <div class="col-xs-2 col-sm-2 col-md-1 col-lg-1">{{evt.objId}}</div>
+          <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">{{evt.objLabel}}</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

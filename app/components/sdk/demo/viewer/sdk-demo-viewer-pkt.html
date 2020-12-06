@@ -1,0 +1,22 @@
+<div ng-controller="SdkDemoViewerPktCtrl as vm">
+  <div class="container panel panel-primary col-xs-12 col-sm-12 col-md-6 col-lg-6" ng-show="vm.show">
+    <h5 class="panel-heading row">
+      <a ng-click="vm.close()">
+        <button type="button" class="close" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </a>
+      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+      Displaying XML data
+      </div>
+      <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+      {{vm.getSelectedTransaction()}}
+      </div>
+    </h5>    
+    <div class="panel-body" ng-cloak>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <pre>{{vm.getSelectedData()}}</pre>
+      </div>
+    </div>
+  </div>
+</div>

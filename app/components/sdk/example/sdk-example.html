@@ -1,0 +1,49 @@
+<div ng-controller="SdkExampleCtrl as vm">
+  <div class="container panel panel-primary col-xs-12">
+    <div class="panel-heading">
+      <h2 class="panel-heading" ng-cloak>
+        SDK XSD and Examples
+        <span class="badge">{{ (vm.fileObjList | filter: vm.searchText).length }}</span>
+      </h2>
+
+      <div class="row">
+        <h4 class="hidden-sm col-md-1 col-lg-1"></h4>
+        <h4 class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+          Name
+        </h4>
+        <h4 class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+          Description
+        </h4>
+        <h4 class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+          View
+        </h4>
+        <h4 class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+          Download
+        </h4>
+      </div>
+    </div>
+
+    <div class="panel-body" ng-repeat="objFile in vm.fileObjList | filter: vm.searchText" ng-class="{odd: $odd, even: $even}"
+      ng-cloak>
+      <div class="hidden-sm col-md-1 col-lg-1">
+        {{$index + 1 }}
+      </div>
+      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <a href="" ng-click="vm.showFile(objFile.name)">{{objFile.label}}</a>
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+        {{objFile.desc}}
+      </div>
+      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <a href="" ng-click="vm.showFile(objFile.name)">View</a>
+      </div>
+      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <a ng-href="{{objFile.url}}" download="{{objFile.fileName}}">{{objFile.fileName}}</a>
+      </div>
+    </div>
+
+    <div class="panel-body" ng-show="vm.showFileGet()" ng-cloak>
+      <pre class="col-xs-12 col-sm-12 col-md-12 col-lg-12">{{vm.showFileGet()}}</pre>
+    </div>
+  </div>
+</div>

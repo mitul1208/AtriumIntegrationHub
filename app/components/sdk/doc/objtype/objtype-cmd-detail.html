@@ -1,0 +1,41 @@
+<div ng-controller="ObjTypeCmdCtrl as vm">
+  <div class="container panel panel-primary col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-show="vm.showMe">
+    <h4 class="panel-heading" ng-cloak>
+      <button type="button" class="close" aria-label="Close" ng-click="vm.close()">
+        <span aria-hidden="true">&times;</span>
+      </button> Object command details: {{ vm.objTypeCmd.label }}
+      <span class="badge">{{vm.numCmdGet()}}</span>
+    </h4>
+    <div class="panel-body">
+      <dl class="dl-horizontal">
+        <dt>Description</dt>
+        <dd ng-cloak>{{ vm.objTypeCmd.desc }}</dd>
+        <dt>Tag name</dt>
+        <dd ng-cloak>{{ vm.objTypeCmd.recTag }}</dd>
+      </dl>
+    </div>
+    <div class="panel-heading" ng-show="vm.numItemGet()">
+      <div class="row">
+        <div class="hidden-sm col-md-1 col-lg-1"></div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Name</div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">Details</div>
+        <div class="col-xs-2 col-sm-2 col-md-1 col-lg-1">Tag name</div>
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Size</div>
+        <div class="col-xs-2 col-sm-2 col-md-1 col-lg-1">Number of items</div>
+        <div class="col-xs-2 col-sm-2 col-md-3 col-lg-3">'C' code</div>
+      </div>
+    </div>
+    <div class="panel-body" ng-repeat="cmd in vm.objTypeCmd.tblTags | filter: vm.searchText| orderBy: 'label'" ng-class="{odd: $odd, even: $even}"
+      ng-cloak>
+      <div class="row">
+        <div class="hidden-sm col-md-1 col-lg-1">{{$index + 1 }}</div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{cmd.label}}</div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">{{cmd.desc}}</div>
+        <div class="col-xs-2 col-sm-2 col-md-1 col-lg-1">{{cmd.tagName}}</div>
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">{{cmd.size}}</div>
+        <div class="col-xs-2 col-sm-2 col-md-1 col-lg-1">{{cmd.numItem}}</div>
+        <div class="col-xs-2 col-sm-2 col-md-3 col-lg-3">{{cmd.c_code}}</div>
+      </div>
+    </div>
+  </div>
+</div>

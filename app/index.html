@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<html ng-app="atrium">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title at-label="login_lbl_head_title"></title>
+
+    <!-- build:css assets/css/style.css -->
+    <!-- ASSETS -->
+    <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/ADM-dateTimePicker.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/fontello.css">
+    <!-- SHARED -->
+    <link rel="stylesheet" type="text/css" href="./shared/css/site.css">
+    <link rel="stylesheet" type="text/css" href="./shared/css/site-responsive.css">
+    <!-- endbuild -->
+
+    <!-- build:remove -->
+    <link rel="shortcut icon" href="#">
+    <!-- endbuild -->
+
+</head>
+
+<!--<body ng-cloak ng-show="hasLabels">-->
+
+<body ng-cloak>
+
+    <div ng-view></div>
+
+    <ng-include src="'./components/sdk/objdef/objdef.html'"></ng-include>
+
+    <!-- Insert this line above script imports to support jquery in electron  -->
+    <script>
+        if (typeof module === 'object') {
+            window.module = module;
+            module = undefined;
+        }
+    </script>
+
+    <!-- build:js js/lib.js -->
+    <!-- ASSETS -->
+    <script type="text/javascript" src="./assets/js/jquery-1.12.0.min.js"></script>
+    <script type="text/javascript" src="./assets/js/jquery.bootpag.min.js"></script>
+    <script type="text/javascript" src="./assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./assets/js/angular.min.js"></script>
+    <script type="text/javascript" src="./assets/js/angular-route.min.js"></script>
+    <script type="text/javascript" src="./assets/js/angular-cookies.min.js"></script>
+    <script type="text/javascript" src="./assets/js/ngStorage.js"></script>
+    <script type="text/javascript" src="./assets/js/xml2json.min.js"></script>
+    <script type="text/javascript" src="./assets/js/common.js"></script>
+    <script type="text/javascript" src="./assets/js/constants.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js1 js/app.js -->
+    <!-- COMPONENTS -->
+    <script type="text/javascript" src="./app.js"></script>
+    <script type="text/javascript" src="./app.route.js"></script>
+    <!--HOME-->
+    <script type="text/javascript" src="./components/home/home.ctrl.js"></script>
+    <script type="text/javascript" src="./components/menu/menu.ctrl.js"></script>
+    <script type="text/javascript" src="./components/menu/nav.search.ctrl.js"></script>
+    <!--SDK FILES-->
+    <script type="text/javascript" src="./components/sdk/doc/objtypes/objtypes.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/doc/objtype/objtype.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/doc/objtype/objtype.info.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/doc/objtype/objtype.cmd.detail.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/doc/objtype/objtype.rec.detail.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/example/sdk.example.main.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/example/sdk.example.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/demo/login/sdk.demo.login.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/demo/login/sdk.demo.logout.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/demo/cmd/sdk.demo.cmd.main.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/demo/cmd/rec/sdk.demo.cmd.rec.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/demo/cmd/rec/sdk.demo.cmd.rec.detail.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/demo/evt/sdk.demo.evt.main.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/demo/evt/cmd/sdk.demo.evt.cmd.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/demo/evt/list/sdk.demo.evt.list.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/demo/objtypes/sdk.demo.objtypes.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/demo/viewer/sdk.demo.viewer.list.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/demo/viewer/sdk.demo.viewer.pkt.ctrl.js"></script>
+    <!--OBJECT TYPE DEFINITIONS-->
+    <script type="text/javascript" src="./components/sdk/objdef/access/objtype.access.level.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/access/objtype.access.level.tmpl.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/access/objtype.elevator.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/access/objtype.floor.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/access/objtype.floor.level.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/access/objtype.partition.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/centaur/objtype.centaur.svr.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/centaur/objtype.ebus.mdl.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/door/objtype.door.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/door/objtype.door.lock.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/email/objtype.email.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/email/objtype.email.settings.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/email/objtype.email.mustering.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/evt/objtype.evt.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/fw/objtype.fw.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/hw/objtype.ac.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/hw/objtype.aux.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/hw/objtype.batt.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/hw/objtype.hardware.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/hw/objtype.input.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/hw/objtype.input.hw.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/hw/objtype.output.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/hw/objtype.relay.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/hw/objtype.rtc.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/hw/objtype.selftest.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/hw/objtype.tactswitch.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/hw/objtype.tamper.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/hw/objtype.vlock.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/hw/objtype.UsbMaster.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/hw/objtype.memorystatus.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/ip/objtype.ip.connection.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/ip/objtype.ip.client.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/ip/objtype.net.wdg.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/macro/objtype.macro.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/macro/objtype.macro.counter.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/macro/objtype.macro.timer.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/macro/objtype.command.group.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/mdl/objtype.custom.dflt.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/mdl/objtype.license.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/mdl/objtype.lockdown.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/mdl/objtype.mdl.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/mdl/objtype.mdl.tbl.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/mdl/objtype.rec.tbl.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/pnp/objtype.pnp.master.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/pnp/objtype.pnp.slave.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/reader/objtype.reader.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/sched/objtype.sched.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/sched/objtype.holiday.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/sched/objtype.holiday.group.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/syslog/objtype.syslog.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/sync/objtype.sync.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/third_party/objtype.aa.door.handle.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/third_party/objtype.aa.hub.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/third_party/objtype.ir.pim.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/third_party/objtype.ir.apm.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/user/objtype.card.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/user/objtype.learn.mode.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/user/objtype.user.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/user/objtype.user.code.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/user/objtype.user.login.ctrl.js"></script>
+    <script type="text/javascript" src="./components/sdk/objdef/zone/objtype.camera.ctrl.js"></script>
+    <!-- SERVICES -->
+    <!--<script type="text/javascript" src="./shared/svc/util.svc.js"></script>-->
+    <script type="text/javascript" src="./components/sdk/objtypes.svc.js"></script>
+    <script type="text/javascript" src="./components/sdk/xml.svc.js"></script>
+    <script type="text/javascript" src="./components/sdk/demo/devices.db.svc.js"></script>
+    <script type="text/javascript" src="./components/sdk/demo/viewer/sdk.demo.viewer.svc.js"></script>
+    <script type="text/javascript" src="./components/sdk/demo/evt/sdk.evt.svc.js"></script>
+    <script type="text/javascript" src="./components/sdk/demo/tag.data.svc.js"></script>
+    <!-- DIRECTIVES -->
+    <script type="text/javascript" src="./components/sdk/demo/tag.data.dir.js"></script>
+    <!-- FILTERS -->
+    <!-- endbuild -->
+
+    <!-- Insert this line after script imports to support jquery in electron -->
+    <script>
+        if (window.module) module = window.module;
+    </script>
+</body>
+
+</html>

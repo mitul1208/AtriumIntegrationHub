@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SDK xmlns="https://www.cdvi.ca/" >
+	<COMMANDS>
+		<CMD trans_id="11" res="ok" cmd="unlock" sernum="0A221037" type="door" >
+			<DATA res="ok" id="0" />
+			<DATA res="ok" id="1" />
+		</CMD>
+		<CMD trans_id="12" res="ok" cmd="lock" sernum="0A221037" type="door" >
+			<DATA res="ok" id="0" />
+			<DATA res="ok" id="1" />
+		</CMD>
+	</COMMANDS>
+	<RECORDS>
+		<REC trans_id="1" cmd="read" sernum="0A221037" type="user" rec="cfg" res="ok" >
+			<DATA res="ok" id="1" cnt="74" obj_status="used" valid="1" ro="0" protect="1" guid2="782B7666209E4120" label3="USER" label4="ADMINISTRATOR" bit5="1" bit6="1" bit7="0" bit8="1" bit9="0" bit10="0" bit11="0" bit12="0" bit13="0" bit14="0" bit15="1" bit18="1" bit19="0" bit20="0" word21="0" dword22="946684801" dword23="-1" word25_0="1" word25_1="65535" word25_2="65535" word25_3="65535" word25_4="65535" word25="124" word27_0="1" word27_1="65535" word27_2="65535" word27_3="65535" word27_4="65535" />
+			<DATA res="ok" id="2" cnt="1" obj_status="used" valid="1" ro="0" protect="0" guid2="73C6BF26445A4C44" label3="USER" label4="PROGRAMMING" bit5="0" bit6="0" bit7="0" bit8="0" bit9="0" bit10="0" bit11="0" bit12="0" bit13="0" bit14="0" bit15="0" bit18="0" bit19="0" bit20="0" word21="0" dword22="946684801" dword23="-1" word25_0="2" word25_1="65535" word25_2="65535" word25_3="65535" word25_4="65535" word25="0" word27_0="2" word27_1="65535" word27_2="65535" word27_3="65535" word27_4="65535" />
+			<DATA res="ok" id="3" cnt="77" obj_status="free" />
+		</REC>
+		<REC trans_id="2" cmd="write" sernum="0A221037" type="user" rec="cfg" res="ok" >
+			<DATA res="ok" id="1" cnt="78" />
+		</REC>
+		<REC trans_id="3" cmd="add" sernum="0A221037" type="user" rec="cfg" res="ok" >
+			<DATA res="ok" id="3" cnt="79" obj_status="used" valid="1" ro="0" protect="0" guid2="0000000000000000" label3="" label4="" bit5="0" bit6="0" bit7="0" bit8="0" bit9="0" bit10="0" bit11="0" bit12="0" bit13="0" bit14="0" bit15="0" bit18="0" bit19="0" bit20="0" word21="0" dword22="0" dword23="0" word25_0="0" word25_1="0" word25_2="0" word25_3="0" word25_4="0" word25="0" word27_0="0" word27_1="0" word27_2="0" word27_3="0" word27_4="0" />
+		</REC>
+		<REC trans_id="4" cmd="delete" sernum="0A221037" type="user" rec="cfg" res="ok" >
+			<DATA res="ok" id="3" cnt="81" />
+		</REC>
+		<REC trans_id="6" cmd="read" sernum="0A221037" type="user" rec="cfg" res="ok" >
+			<DATA res="ok" id="1" cnt="78" label3="USER" bit8="1" />
+			<DATA res="ok" id="2" cnt="1" label3="USER" bit8="0" />
+			<DATA res="ok" id="3" cnt="81" obj_status="free" />
+		</REC>
+	</RECORDS>
+	<EVENTS>
+		<EVT trans_id="14" cmd="read" res="ok" >
+			<DATA res="ok" sernum="0A221037" id="1" time="2016-11-18 16:20:24" time_utc="2016-11-18 21:20:24" obj_evt="0" obj_sn="0a229733" obj_type="34" obj_id="0" obj_label="" snd_obj_sn="ffffffff" snd_obj_type="-1" snd_obj_id="-1" snd_obj_label="" />
+			<DATA res="ok" sernum="0A221037" id="2" time="2016-11-18 16:20:24" time_utc="2016-11-18 21:20:24" obj_evt="0" obj_sn="0a229733" obj_type="45" obj_id="0" obj_label="" snd_obj_sn="ffffffff" snd_obj_type="-1" snd_obj_id="-1" snd_obj_label="" />
+			<DATA res="ok" sernum="0A221037" id="3" time="2016-11-18 16:20:24" time_utc="2016-11-18 21:20:24" obj_evt="1" obj_sn="0a229733" obj_type="42" obj_id="0" obj_label="" snd_obj_sn="ffffffff" snd_obj_type="-1" snd_obj_id="-1" snd_obj_label="" />
+			<DATA res="ok" sernum="0A221037" id="4" time="2016-11-18 16:20:42" time_utc="2016-11-18 21:20:42" obj_evt="6" obj_sn="0a229733" obj_type="4" obj_id="0" obj_label="" snd_obj_sn="ffffffff" snd_obj_type="-1" snd_obj_id="-1" snd_obj_label="" />
+			<DATA res="ok" sernum="0A221037" id="5" time="2016-11-18 16:20:42" time_utc="2016-11-18 21:20:42" obj_evt="6" obj_sn="0a229733" obj_type="4" obj_id="1" obj_label="" snd_obj_sn="ffffffff" snd_obj_type="-1" snd_obj_id="-1" snd_obj_label="" />
+			<DATA res="ok" sernum="0A221037" id="6" time="2016-11-18 16:21:17" time_utc="2016-11-18 21:21:17" obj_evt="251" obj_sn="0a229733" obj_type="28" obj_id="0" obj_label="" snd_obj_sn="0a229733" snd_obj_type="28" snd_obj_id="0" snd_obj_label="" />
+			<DATA res="ok" sernum="0A221037" id="7" time="2016-11-18 16:31:33" time_utc="2016-11-18 21:31:33" obj_evt="251" obj_sn="0a229733" obj_type="28" obj_id="0" obj_label="" snd_obj_sn="0a229733" snd_obj_type="28" snd_obj_id="0" snd_obj_label="" />
+			<DATA res="ok" sernum="0A221037" id="8" time="2016-11-18 16:31:34" time_utc="2016-11-18 21:31:34" obj_evt="2" obj_sn="0a221037" obj_type="18" obj_id="1" obj_label="" snd_obj_sn="ffffffff" snd_obj_type="-1" snd_obj_id="-1" snd_obj_label="" />
+			<DATA res="ok" sernum="0A221037" id="9" time="2016-11-18 16:31:34" time_utc="2016-11-18 21:31:34" obj_evt="251" obj_sn="0a221037" obj_type="40" obj_id="0" obj_label="A22 [2-Door Controller]" snd_obj_sn="0a221037" snd_obj_type="40" snd_obj_id="0" snd_obj_label="A22 [2-Door Controller]" />
+			<DATA res="ok" sernum="0A221037" id="10" time="2016-11-18 16:31:34" time_utc="2016-11-18 21:31:34" obj_evt="0" obj_sn="0a221037" obj_type="34" obj_id="0" obj_label="" snd_obj_sn="ffffffff" snd_obj_type="-1" snd_obj_id="-1" snd_obj_label="" />
+		</EVT>
+		<EVT trans_id="15" cmd="query" res="ok" version="629760303" sernum_min="0A221037" sernum_max="0A221037" type_min="0" type_max="300" id_min="1" id_max="25000" last_ts_utc="-1" last_sernum="FFFFFFFF" last_num="-1" num_evt="30" num_evt_total="25000" client_tx="1" client_rx="1" >
+			<DATA res="ok" utc_time="1487015826" sernum="0A221037" id="752" />
+			<DATA res="ok" utc_time="1487015828" sernum="0A221037" id="753" />
+			<DATA res="ok" utc_time="1487015846" sernum="0A221037" id="754" />
+			<DATA res="ok" utc_time="1487015846" sernum="0A221037" id="755" />
+			<DATA res="ok" utc_time="1487015891" sernum="0A221037" id="756" />
+			<DATA res="ok" utc_time="1487015900" sernum="0A221037" id="757" />
+			<DATA res="ok" utc_time="1487015900" sernum="0A221037" id="758" />
+			<DATA res="ok" utc_time="1487015900" sernum="0A221037" id="759" />
+			<DATA res="ok" utc_time="1487015900" sernum="0A221037" id="760" />
+			<DATA res="ok" utc_time="1487015900" sernum="0A221037" id="761" />
+			<DATA res="ok" utc_time="1487015900" sernum="0A221037" id="762" />
+			<DATA res="ok" utc_time="1487015905" sernum="0A221037" id="763" />
+			<DATA res="ok" utc_time="1487015905" sernum="0A221037" id="764" />
+			<DATA res="ok" utc_time="1487015946" sernum="0A221037" id="765" />
+			<DATA res="ok" utc_time="1487015947" sernum="0A221037" id="766" />
+			<DATA res="ok" utc_time="1487015963" sernum="0A221037" id="767" />
+			<DATA res="ok" utc_time="1487015963" sernum="0A221037" id="768" />
+			<DATA res="ok" utc_time="1487017147" sernum="0A221037" id="769" />
+			<DATA res="ok" utc_time="1487017147" sernum="0A221037" id="770" />
+			<DATA res="ok" utc_time="1487017149" sernum="0A221037" id="771" />
+			<DATA res="ok" utc_time="1487017167" sernum="0A221037" id="772" />
+			<DATA res="ok" utc_time="1487017167" sernum="0A221037" id="773" />
+			<DATA res="ok" utc_time="1487017268" sernum="0A221037" id="774" />
+			<DATA res="ok" utc_time="1487017268" sernum="0A221037" id="775" />
+			<DATA res="ok" utc_time="1487017269" sernum="0A221037" id="776" />
+			<DATA res="ok" utc_time="1487017269" sernum="0A221037" id="777" />
+			<DATA res="ok" utc_time="1487017269" sernum="0A221037" id="778" />
+			<DATA res="ok" utc_time="1487017269" sernum="0A221037" id="779" />
+			<DATA res="ok" utc_time="1487017274" sernum="0A221037" id="780" />
+			<DATA res="ok" utc_time="1487017274" sernum="0A221037" id="781" />
+		</EVT>
+		<EVT trans_id="16" cmd="query_read" res="ok" version="629760303" sernum_min="0A221037" sernum_max="0A221037" type_min="0" type_max="300" id_min="1" id_max="25000" last_ts_utc="-1" last_sernum="FFFFFFFF" last_num="-1" num_evt="30" num_evt_total="25000" client_tx="1" client_rx="1" >
+			<DATA res="ok" sernum="0A221037" id="752" time="2017-02-13 14:57:06" time_utc="2017-02-13 19:57:06" obj_evt="0" obj_sn="0a221037" obj_type="45" obj_id="0" obj_label="" snd_obj_sn="ffffffff" snd_obj_type="-1" snd_obj_id="-1" snd_obj_label="" />
+			<DATA res="ok" sernum="0A221037" id="753" time="2017-02-13 14:57:08" time_utc="2017-02-13 19:57:08" obj_evt="1" obj_sn="0a221037" obj_type="42" obj_id="0" obj_label="" snd_obj_sn="ffffffff" snd_obj_type="-1" snd_obj_id="-1" snd_obj_label="" />
+			<DATA res="ok" sernum="0A221037" id="754" time="2017-02-13 14:57:26" time_utc="2017-02-13 19:57:26" obj_evt="6" obj_sn="0a221037" obj_type="4" obj_id="0" obj_label="0A-22-10-37: Door 01" snd_obj_sn="ffffffff" snd_obj_type="-1" snd_obj_id="-1" snd_obj_label="" />
+			<DATA res="ok" sernum="0A221037" id="755" time="2017-02-13 14:57:26" time_utc="2017-02-13 19:57:26" obj_evt="6" obj_sn="0a221037" obj_type="4" obj_id="1" obj_label="0A-22-10-37: Door 02" snd_obj_sn="ffffffff" snd_obj_type="-1" snd_obj_id="-1" snd_obj_label="" />
+			<DATA res="ok" sernum="0A221037" id="756" time="2017-02-13 14:58:11" time_utc="2017-02-13 19:58:11" obj_evt="0" obj_sn="0a221037" obj_type="38" obj_id="0" obj_label="192.168.2.30" snd_obj_sn="0a221037" snd_obj_type="11" snd_obj_id="0" snd_obj_label="USER INSTALLER" />
+			<DATA res="ok" sernum="0A221037" id="757" time="2017-02-13 14:58:20" time_utc="2017-02-13 19:58:20" obj_evt="17" obj_sn="0a221037" obj_type="4" obj_id="0" obj_label="0A-22-10-37: Door 01" snd_obj_sn="0a221037" snd_obj_type="48" snd_obj_id="0" snd_obj_label="" />
+			<DATA res="ok" sernum="0A221037" id="758" time="2017-02-13 14:58:20" time_utc="2017-02-13 19:58:20" obj_evt="11" obj_sn="0a221037" obj_type="4" obj_id="0" obj_label="0A-22-10-37: Door 01" snd_obj_sn="ffffffff" snd_obj_type="-1" snd_obj_id="-1" snd_obj_label="" />
+			<DATA res="ok" sernum="0A221037" id="759" time="2017-02-13 14:58:20" time_utc="2017-02-13 19:58:20" obj_evt="17" obj_sn="0a221037" obj_type="4" obj_id="1" obj_label="0A-22-10-37: Door 02" snd_obj_sn="0a221037" snd_obj_type="48" snd_obj_id="0" snd_obj_label="" />
+			<DATA res="ok" sernum="0A221037" id="760" time="2017-02-13 14:58:20" time_utc="2017-02-13 19:58:20" obj_evt="11" obj_sn="0a221037" obj_type="4" obj_id="1" obj_label="0A-22-10-37: Door 02" snd_obj_sn="ffffffff" snd_obj_type="-1" snd_obj_id="-1" snd_obj_label="" />
+			<DATA res="ok" sernum="0A221037" id="761" time="2017-02-13 14:58:20" time_utc="2017-02-13 19:58:20" obj_evt="1" obj_sn="0a221037" obj_type="4" obj_id="0" obj_label="0A-22-10-37: Door 01" snd_obj_sn="0a221037" snd_obj_type="48" snd_obj_id="0" snd_obj_label="" />
+			<DATA res="ok" sernum="0A221037" id="762" time="2017-02-13 14:58:20" time_utc="2017-02-13 19:58:20" obj_evt="1" obj_sn="0a221037" obj_type="4" obj_id="1" obj_label="0A-22-10-37: Door 02" snd_obj_sn="0a221037" snd_obj_type="48" snd_obj_id="0" snd_obj_label="" />
+			<DATA res="ok" sernum="0A221037" id="763" time="2017-02-13 14:58:25" time_utc="2017-02-13 19:58:25" obj_evt="18" obj_sn="0a221037" obj_type="4" obj_id="0" obj_label="0A-22-10-37: Door 01" snd_obj_sn="0a221037" snd_obj_type="4" snd_obj_id="0" snd_obj_label="0A-22-10-37: Door 01" />
+			<DATA res="ok" sernum="0A221037" id="764" time="2017-02-13 14:58:25" time_utc="2017-02-13 19:58:25" obj_evt="18" obj_sn="0a221037" obj_type="4" obj_id="1" obj_label="0A-22-10-37: Door 02" snd_obj_sn="0a221037" snd_obj_type="4" snd_obj_id="1" snd_obj_label="0A-22-10-37: Door 02" />
+			<DATA res="ok" sernum="0A221037" id="765" time="2017-02-13 14:59:06" time_utc="2017-02-13 19:59:06" obj_evt="4" obj_sn="0a221037" obj_type="4" obj_id="0" obj_label="0A-22-10-37: Door 01" snd_obj_sn="ffffffff" snd_obj_type="-1" snd_obj_id="-1" snd_obj_label="" />
+			<DATA res="ok" sernum="0A221037" id="766" time="2017-02-13 14:59:07" time_utc="2017-02-13 19:59:07" obj_evt="4" obj_sn="0a221037" obj_type="4" obj_id="1" obj_label="0A-22-10-37: Door 02" snd_obj_sn="ffffffff" snd_obj_type="-1" snd_obj_id="-1" snd_obj_label="" />
+			<DATA res="ok" sernum="0A221037" id="767" time="2017-02-13 14:59:23" time_utc="2017-02-13 19:59:23" obj_evt="5" obj_sn="0a221037" obj_type="4" obj_id="0" obj_label="0A-22-10-37: Door 01" snd_obj_sn="ffffffff" snd_obj_type="-1" snd_obj_id="-1" snd_obj_label="" />
+			<DATA res="ok" sernum="0A221037" id="768" time="2017-02-13 14:59:23" time_utc="2017-02-13 19:59:23" obj_evt="5" obj_sn="0a221037" obj_type="4" obj_id="1" obj_label="0A-22-10-37: Door 02" snd_obj_sn="ffffffff" snd_obj_type="-1" snd_obj_id="-1" snd_obj_label="" />
+			<DATA res="ok" sernum="0A221037" id="769" time="2017-02-13 15:19:07" time_utc="2017-02-13 20:19:07" obj_evt="0" obj_sn="0a221037" obj_type="34" obj_id="0" obj_label="" snd_obj_sn="ffffffff" snd_obj_type="-1" snd_obj_id="-1" snd_obj_label="" />
+			<DATA res="ok" sernum="0A221037" id="770" time="2017-02-13 15:19:07" time_utc="2017-02-13 20:19:07" obj_evt="0" obj_sn="0a221037" obj_type="45" obj_id="0" obj_label="" snd_obj_sn="ffffffff" snd_obj_type="-1" snd_obj_id="-1" snd_obj_label="" />
+			<DATA res="ok" sernum="0A221037" id="771" time="2017-02-13 15:19:09" time_utc="2017-02-13 20:19:09" obj_evt="1" obj_sn="0a221037" obj_type="42" obj_id="0" obj_label="" snd_obj_sn="ffffffff" snd_obj_type="-1" snd_obj_id="-1" snd_obj_label="" />
+			<DATA res="ok" sernum="0A221037" id="772" time="2017-02-13 15:19:27" time_utc="2017-02-13 20:19:27" obj_evt="6" obj_sn="0a221037" obj_type="4" obj_id="0" obj_label="0A-22-10-37: Door 01" snd_obj_sn="ffffffff" snd_obj_type="-1" snd_obj_id="-1" snd_obj_label="" />
+			<DATA res="ok" sernum="0A221037" id="773" time="2017-02-13 15:19:27" time_utc="2017-02-13 20:19:27" obj_evt="6" obj_sn="0a221037" obj_type="4" obj_id="1" obj_label="0A-22-10-37: Door 02" snd_obj_sn="ffffffff" snd_obj_type="-1" snd_obj_id="-1" snd_obj_label="" />
+			<DATA res="ok" sernum="0A221037" id="774" time="2017-02-13 15:21:08" time_utc="2017-02-13 20:21:08" obj_evt="17" obj_sn="0a221037" obj_type="4" obj_id="0" obj_label="0A-22-10-37: Door 01" snd_obj_sn="0a221037" snd_obj_type="48" snd_obj_id="0" snd_obj_label="" />
+			<DATA res="ok" sernum="0A221037" id="775" time="2017-02-13 15:21:08" time_utc="2017-02-13 20:21:08" obj_evt="11" obj_sn="0a221037" obj_type="4" obj_id="0" obj_label="0A-22-10-37: Door 01" snd_obj_sn="ffffffff" snd_obj_type="-1" snd_obj_id="-1" snd_obj_label="" />
+			<DATA res="ok" sernum="0A221037" id="776" time="2017-02-13 15:21:09" time_utc="2017-02-13 20:21:09" obj_evt="17" obj_sn="0a221037" obj_type="4" obj_id="1" obj_label="0A-22-10-37: Door 02" snd_obj_sn="0a221037" snd_obj_type="48" snd_obj_id="0" snd_obj_label="" />
+			<DATA res="ok" sernum="0A221037" id="777" time="2017-02-13 15:21:09" time_utc="2017-02-13 20:21:09" obj_evt="11" obj_sn="0a221037" obj_type="4" obj_id="1" obj_label="0A-22-10-37: Door 02" snd_obj_sn="ffffffff" snd_obj_type="-1" snd_obj_id="-1" snd_obj_label="" />
+			<DATA res="ok" sernum="0A221037" id="778" time="2017-02-13 15:21:09" time_utc="2017-02-13 20:21:09" obj_evt="1" obj_sn="0a221037" obj_type="4" obj_id="0" obj_label="0A-22-10-37: Door 01" snd_obj_sn="0a221037" snd_obj_type="48" snd_obj_id="0" snd_obj_label="" />
+			<DATA res="ok" sernum="0A221037" id="779" time="2017-02-13 15:21:09" time_utc="2017-02-13 20:21:09" obj_evt="1" obj_sn="0a221037" obj_type="4" obj_id="1" obj_label="0A-22-10-37: Door 02" snd_obj_sn="0a221037" snd_obj_type="48" snd_obj_id="0" snd_obj_label="" />
+			<DATA res="ok" sernum="0A221037" id="780" time="2017-02-13 15:21:14" time_utc="2017-02-13 20:21:14" obj_evt="18" obj_sn="0a221037" obj_type="4" obj_id="0" obj_label="0A-22-10-37: Door 01" snd_obj_sn="0a221037" snd_obj_type="4" snd_obj_id="0" snd_obj_label="0A-22-10-37: Door 01" />
+			<DATA res="ok" sernum="0A221037" id="781" time="2017-02-13 15:21:14" time_utc="2017-02-13 20:21:14" obj_evt="18" obj_sn="0a221037" obj_type="4" obj_id="1" obj_label="0A-22-10-37: Door 02" snd_obj_sn="0a221037" snd_obj_type="4" snd_obj_id="1" snd_obj_label="0A-22-10-37: Door 02" />
+		</EVT>
+		<EVT trans_id="17" cmd="read" res="ok" >
+			<DATA res="ok" sernum="0A221037" id="3" time="2016-11-18 16:20:24" time_utc="2016-11-18 21:20:24" obj_evt="1" obj_sn="0a229733" obj_type="42" obj_id="0" obj_label="" snd_obj_sn="ffffffff" snd_obj_type="-1" snd_obj_id="-1" snd_obj_label="" />
+		</EVT>
+	</EVENTS>
+</SDK>

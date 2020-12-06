@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SDK_EXAMPLE_USER>
+    <SDK comment='SDK EXAMPLE - ADD NEW USER - PART 1 (REQUEST TO CONTROLLER)' xmlns='https://www.cdvi.ca/'>
+        <RECORDS comment='SDK sends the request to add a new user  John Doe  to the controller'>
+            <REC trans_id='2' cmd='add' sernum='0A221037' type='user' rec='cfg'>
+                <DATA obj_status='used' valid='1' label3='John' label4='Doe' bit6='1' word24_0='1' word25='0'/>
+            </REC>
+        </RECORDS>
+    </SDK>
+
+    <SDK comment='SDK EXAMPLE - ADD NEW USER - PART 1 (ANSWER FROM CONTROLLER)' xmlns='https://www.cdvi.ca/'>
+        <RECORDS>
+            <REC trans_id='2' cmd='add' sernum='0A221037' type='user' rec='cfg' res='ok'>
+                <COMMENT>In the DATA answer, validate the command result (res), then note the object id of the new added item (Here, id=5)</COMMENT>
+                <DATA res='ok' id='5' cnt='9' obj_status='used' valid='1' ro='0' protect='0' guid2='00000000000000000000000000000000' label3='John' label4='Doe' bit5='0' bit6='1' bit7='0' bit8='0' bit9='0' bit10='0' bit11='0' bit12='0' bit13='0' bit14='0' bit15='1' bit18='0' bit19='0' bit20='0' word21='0' dword22='0' dword23='0' word24_0='1' word24_1='0' word24_2='0' word24_3='0' word24_4='0' word25='0' word26_0='0' word26_1='0' word26_2='0' word26_3='0' word26_4='0'/>
+            </REC>
+        </RECORDS>
+    </SDK>
+
+    <SDK comment='SDK EXAMPLE - ADD NEW USER - PART 2 (REQUEST TO CONTROLLER)' xmlns='https://www.cdvi.ca/'>
+        <RECORDS comment='Request to add a new card/code/login associated with new user (user 5)'>
+            <REC trans_id='3' cmd='add' sernum='0A221037' type='card' rec='cfg'>
+                <COMMENT>Program card  13A1E  for user id  5  with no expiration time (FFFFFFFF)</COMMENT>
+                <DATA obj_status='used' valid='1' label3='John Doe&apos;s card' dword4='5' hexv5='00013A1E' hexv6='00000000' byte8='1' bit11='1' bit20='0' utc_time25='FFFFFFFF'/>
+            </REC>
+            <REC trans_id='4' cmd='add' sernum='0A221037' type='user_code' rec='cfg'>
+                <COMMENT>Program user code  54321  for user id  5  with no expiration time (FFFFFFFF)</COMMENT>
+                <DATA obj_status='used' valid='1' label3='John Doe&apos;s code' dword4='5' key5='fff54321' bit8='1' bit17='0' utc_time19='FFFFFFFF'/>
+            </REC>
+            <REC trans_id='5' cmd='add' sernum='0A221037' type='user_login' rec='cfg'>
+                <COMMENT>Program user login  john_user  with password  john_pswd  for user id 5 with no expiration time (FFFFFFFF). Allow web and pc access and affect it to access level group 0</COMMENT>
+                <DATA obj_status='used' valid='1' bit2='1' bit3='1' utf4='The pswd is john_pswd' label5='john_user' pswd6='john_pswd' dword8='5' utc_time11='FFFFFFFF' word14='0'/>
+            </REC>
+        </RECORDS>
+    </SDK>
+
+    <SDK comment='SDK EXAMPLE - ADD NEW USER - PART 2 (ANSWER FROM CONTROLLER)' xmlns='https://www.cdvi.ca/'>
+        <RECORDS comment='Answer to the card/code/login programming'>
+            <REC trans_id='3' cmd='add' sernum='0A221037' type='card' rec='cfg' res='ok'>
+                <DATA res='ok' id='1' cnt='33' obj_status='used' valid='1' ro='0' protect='0' guid2='00000000000000000000000000000000' label3='John Doe&apos;s card' dword4='5' hexv5='00013A1E' hexv6='00000000' key7='72533B31' byte8='1' bit9='0' bit10='0' bit11='1' bit13='0' bit14='0' bit15='0' bit16='0' bit17='0' bit18='0' bit19='0' bit20='0' bit21='0' bit22='0' utc_time24='00000000' utc_time25='FFFFFFFF' guid26='00000000000000000000000000000000'/>
+            </REC>
+            <REC trans_id='4' cmd='add' sernum='0A221037' type='user_code' rec='cfg' res='ok'>
+                <DATA res='ok' id='1' cnt='7' obj_status='used' valid='1' ro='0' protect='0' guid2='00000000000000000000000000000000' label3='John Doe&apos;s code' dword4='5' key5='FFF54321' bit6='0' bit7='0' bit8='1' bit10='0' bit11='0' bit12='0' bit13='0' bit14='0' bit15='0' bit16='0' bit17='0' utc_time18='00000000' utc_time19='FFFFFFFF' guid20='00000000000000000000000000000000'/>
+            </REC>
+            <REC trans_id='5' cmd='add' sernum='0A221037' type='user_login' rec='cfg' res='ok'>
+                <DATA res='ok' id='3' cnt='3' obj_status='used' valid='1' ro='0' protect='0' bit2='1' bit3='1' utf4='The pswd is john_pswd' label5='john_user' pswd6='john_pswd' guid7='00000000000000000000000000000000' dword8='5' guid9='00000000000000000000000000000000' utc_time10='00000000' utc_time11='FFFFFFFF' byte12='0' byte13='0' word14='0'/>
+            </REC>
+        </RECORDS>
+    </SDK>
+</SDK_EXAMPLE_USER>
